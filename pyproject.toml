@@ -1,0 +1,23 @@
+[project]
+name = "optimbench"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.1",
+    "torchvision>=0.16",
+    "pytorch-optimizer>=3.0.0",
+    "optuna>=3.6",
+    "scipy>=1.11",
+    "SALib>=1.5",
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "torch-geometric>=2.5",
+    "ogb>=1.3",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
