@@ -3,6 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
 from torchvision import transforms
+import timm
+
 
 from optimbench.tasks import Task
 
@@ -112,9 +114,7 @@ class TinyImageNetTask(Task):
 
     def build_model(self, seed):
         torch.manual_seed(seed)
-        model = torchvision.models.swin_t(weights=None)
-        model.head = nn.Linear(model.head.in_features, 200)
-        return model
+        return timm.create_model("swin_tiny_patch4_window7_224", pretrained=False, num_classes=200)
 
     def build_data(self, seed):
         tf = transforms.Compose([transforms.Resize(224), transforms.ToTensor()])

@@ -1,5 +1,5 @@
 from optimbench.config import CALIBRATION, TARGETS, TUNING, RUN
-from optimbench.registry import resolve_optimizer, param_spec, default_kwargs
+from optimbench.registry import param_spec, default_kwargs
 from optimbench.calibration import calibrate
 from optimbench.tuning import tune_optimizer
 from optimbench.targets import calibrate_targets
@@ -8,8 +8,7 @@ from optimbench.cost import cost_multiplier
 
 
 def train_eval_wrapper(task, optimizer_name, kwargs, seed, step_budget):
-    cls = resolve_optimizer(optimizer_name)
-    history = task.run(cls, kwargs, step_budget, seed)
+    history = task.run(optimizer_name, kwargs, step_budget, seed)
     metric = history[-1][1] if history else (0.0 if task.higher_is_better else float("inf"))
     nfe = history[-1][0] if history else step_budget
     return metric, nfe
@@ -21,8 +20,8 @@ def run_pair(task, optimizer_name, adamw_targets=None):
 
     cm = cost_multiplier(
         lambda: task.build_model(0),
-        resolve_optimizer(optimizer_name), default_kwargs(spec),
-        resolve_optimizer("adamw"), {},
+        optimizer_name, default_kwargs(spec),
+        "adamw", {},
         steps=20,
     )
 
@@ -34,13 +33,12 @@ def run_pair(task, optimizer_name, adamw_targets=None):
     results = {}
     for budget_name, n_trials in TUNING.budgets.items():
         best_kwargs, tuning_nfe = tune_optimizer(
-            optimizer_name, spec, calib["bounds"], calib["fixed"],
+            optimizer_name, spec, calib["active_bounds"], calib["fixed"],
             train_eval_fn, n_trials, TUNING.sampler_seed
         )
-        cls = resolve_optimizer(optimizer_name)
         histories, train_nfe_total = [], 0
         for seed in range(RUN.final_seeds):
-            history = task.run(cls, best_kwargs, task.max_steps_cap, seed)
+            history = task.run(optimizer_name, best_kwargs, task.max_steps_cap, seed)
             histories.append(history)
             train_nfe_total += history[-1][0] if history else task.max_steps_cap
 

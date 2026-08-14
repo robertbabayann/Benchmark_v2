@@ -1,0 +1,1189 @@
+{
+  "config": {
+    "sobol_points": 256,
+    "seeds_per_point": 3,
+    "steps_per_run": 100,
+    "log_scale_span": 4.0,
+    "decay_log_scale_span": 2.0,
+    "decay_hard_cap": 0.5,
+    "unit_eps": 0.001,
+    "divergence_threshold": 1000000.0,
+    "sensitivity_samples": 256,
+    "sensitivity_threshold": 0.05,
+    "bound_low_percentile": 15.0,
+    "bound_high_percentile": 85.0,
+    "use_surrogate": false,
+    "surrogate_min_r2": 0.85,
+    "surrogate_min_samples": 50,
+    "surrogate_cv_folds": 5,
+    "surrogate_bounds_expansion": 1.3
+  },
+  "optimizers": {
+    "sgd": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          8.80247120143363e-07,
+          0.06428723886165093
+        ],
+        "momentum": [
+          0.15289248109236359,
+          0.8466589652635157
+        ]
+      },
+      "fixed": {
+        "dampening": 0.0,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.8493635036615661,
+        "momentum": 0.35279293867039013,
+        "dampening": 0.0038912767466886262,
+        "weight_decay": 1.195586661423571e-05
+      },
+      "sensitivity_S1": {
+        "lr": 0.6308347893428208,
+        "momentum": 0.12643634276723986,
+        "dampening": 0.0045104691504984995,
+        "weight_decay": 6.807341495512494e-06
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.7821180555555556,
+      "elapsed_seconds": 155.298418208
+    },
+    "nag": {
+      "status": "failed",
+      "error": "Bounds are not legal",
+      "elapsed_seconds": 0.14057354100000907
+    },
+    "rmsprop": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.4865761111121388e-05,
+          4.498013884754429
+        ],
+        "alpha": [
+          0.1521893520914018,
+          0.8532568499669433
+        ],
+        "momentum": [
+          0.14991354900598525,
+          0.8461596603188664
+        ]
+      },
+      "fixed": {
+        "eps": 1e-08,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.9896199743258792,
+        "alpha": 0.13718623599374888,
+        "eps": 0.030394025344539426,
+        "weight_decay": 0.003519759375909645,
+        "momentum": 0.13640038852891323
+      },
+      "sensitivity_S1": {
+        "lr": 0.8378961069472395,
+        "alpha": 0.057918138267424875,
+        "eps": 0.020984093699141466,
+        "weight_decay": 0.002603305826866289,
+        "momentum": 0.05836691052030662
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9748263888888888,
+      "elapsed_seconds": 296.978002375
+    },
+    "adadelta": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          0.0015109378889385432,
+          475.6653607586554
+        ],
+        "rho": [
+          0.15289248109236359,
+          0.8506299127209932
+        ],
+        "eps": [
+          1.4529631312313566e-09,
+          0.0005568123515031173
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.7087063792491287,
+        "rho": 0.10806163514557868,
+        "weight_decay": 0.0005150093843595616,
+        "eps": 0.2803609082804446
+      },
+      "sensitivity_S1": {
+        "lr": 0.6373950979112428,
+        "rho": 0.022923020543426667,
+        "weight_decay": -0.0023406500671598034,
+        "eps": 0.13047341359691444
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9774305555555556,
+      "elapsed_seconds": 264.213623917
+    },
+    "adam": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.621426910338348e-06,
+          0.6377988582464726
+        ],
+        "betas_0": [
+          0.1521893520914018,
+          0.8472357704360038
+        ],
+        "betas_1": [
+          0.15142844042554499,
+          0.8505197289641947
+        ]
+      },
+      "fixed": {
+        "eps": 1e-08,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.7281591266483971,
+        "betas_0": 0.20219768033438928,
+        "betas_1": 0.2160535238680892,
+        "eps": 0.01638667009024947,
+        "weight_decay": 0.005410475621849193
+      },
+      "sensitivity_S1": {
+        "lr": 0.6236983661054931,
+        "betas_0": 0.06700909254461951,
+        "betas_1": 0.10293009145267126,
+        "eps": 0.0158590718108024,
+        "weight_decay": 0.010305586062211809
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9982638888888888,
+      "elapsed_seconds": 325.950255708
+    },
+    "adamw": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.621426910338348e-06,
+          0.5752837114025714
+        ],
+        "betas_0": [
+          0.1521893520914018,
+          0.8472357704360038
+        ],
+        "betas_1": [
+          0.15142844042554499,
+          0.8505197289641947
+        ],
+        "weight_decay": [
+          0.0003952281702969478,
+          0.24164292917916436
+        ]
+      },
+      "fixed": {
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.6987691714829423,
+        "betas_0": 0.21982489461123703,
+        "betas_1": 0.21259680572044182,
+        "eps": 0.03716062185294653,
+        "weight_decay": 0.08500273957658196
+      },
+      "sensitivity_S1": {
+        "lr": 0.6225927362664988,
+        "betas_0": 0.13936942996088278,
+        "betas_1": 0.1306433737010315,
+        "eps": 0.004971437598898631,
+        "weight_decay": 0.015514037669757022
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9947916666666666,
+      "elapsed_seconds": 376.1221417500001
+    },
+    "amsgrad": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.621426910338348e-06,
+          0.6377988582464726
+        ],
+        "betas_0": [
+          0.1521893520914018,
+          0.8472357704360038
+        ]
+      },
+      "fixed": {
+        "betas_1": 0.999,
+        "eps": 1e-08,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.9728818079705643,
+        "betas_0": 0.06332274473847356,
+        "betas_1": 0.00980177003650934,
+        "eps": 1.4150283181830984e-07,
+        "weight_decay": 2.1409461375961577e-07
+      },
+      "sensitivity_S1": {
+        "lr": 0.9249195146478737,
+        "betas_0": 0.019800583506071036,
+        "betas_1": 0.0005142496329284427,
+        "eps": -7.010894915503033e-05,
+        "weight_decay": 2.6452424298903544e-05
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 1.0,
+      "elapsed_seconds": 352.13725254099995
+    },
+    "nadam": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          3.2873366662116503e-06,
+          1.2755977164929453
+        ],
+        "betas_0": [
+          0.15195268370956183,
+          0.8494853302203119
+        ],
+        "betas_1": [
+          0.15047641785629093,
+          0.8496298974882811
+        ],
+        "momentum_decay": [
+          0.00016131611588488906,
+          0.10069546523650864
+        ]
+      },
+      "fixed": {
+        "eps": 1e-08,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.8384756060077901,
+        "betas_0": 0.12158227156436503,
+        "betas_1": 0.07867156479517251,
+        "eps": 0.03566489865902365,
+        "weight_decay": 0.0017226713004483605,
+        "momentum_decay": 0.06906942476290023
+      },
+      "sensitivity_S1": {
+        "lr": 0.8399324000202644,
+        "betas_0": 0.06412371265513148,
+        "betas_1": 0.02261545198324319,
+        "eps": 0.010694351203411534,
+        "weight_decay": 0.003377090189625527,
+        "momentum_decay": 0.005196309583095472
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9986979166666666,
+      "elapsed_seconds": 412.6425185000003
+    },
+    "radam": {
+      "status": "failed",
+      "error": "math domain error",
+      "elapsed_seconds": 0.0022404169999390433
+    },
+    "adabelief": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.6436683331058252e-06,
+          0.5780265418695164
+        ],
+        "betas_0": [
+          0.15614166201837362,
+          0.8494853302203119
+        ],
+        "betas_1": [
+          0.15660342607647182,
+          0.8496298974882811
+        ],
+        "eps": [
+          1.626430577761685e-07,
+          0.06337235449498074
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.6108542586532822,
+        "betas_0": 0.4504834421256428,
+        "betas_1": 0.21678759208366202,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 0.0,
+        "eps": 0.4220627793913813
+      },
+      "sensitivity_S1": {
+        "lr": 0.22059181167263492,
+        "betas_0": 0.21313527006677996,
+        "betas_1": -0.040234024375099535,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 0.0,
+        "eps": 0.14780764981967748
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9934895833333334,
+      "elapsed_seconds": 383.7398754579999
+    },
+    "diffgrad": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.6436683331058252e-06,
+          0.6377988582464726
+        ],
+        "betas_0": [
+          0.15195268370956183,
+          0.8494853302203119
+        ],
+        "betas_1": [
+          0.15047641785629093,
+          0.8496298974882811
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.7486196576248242,
+        "betas_0": 0.2359606550172886,
+        "betas_1": 0.29723872580191546,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 0.0,
+        "eps": 0.01751254654183639
+      },
+      "sensitivity_S1": {
+        "lr": 0.6733320270230999,
+        "betas_0": 0.04102614592549149,
+        "betas_1": 0.11910017374736151,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 0.0,
+        "eps": 0.014203708945639763
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9982638888888888,
+      "elapsed_seconds": 372.9864285829999
+    },
+    "yogi": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.643668333105825e-05,
+          6.377988582464726
+        ],
+        "betas_0": [
+          0.15195268370956183,
+          0.8494853302203119
+        ],
+        "betas_1": [
+          0.15047641785629093,
+          0.8496298974882811
+        ],
+        "eps": [
+          1.626430577761685e-06,
+          0.6337235449498074
+        ]
+      },
+      "fixed": {
+        "initial_accumulator": 1e-06,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.3587027592685178,
+        "betas_0": 0.7041707337052784,
+        "betas_1": 0.11609065058106047,
+        "initial_accumulator": 0.010662952293674248,
+        "weight_decay": 0.002828792982798253,
+        "eps": 0.09071577929610061
+      },
+      "sensitivity_S1": {
+        "lr": 0.31222581280676787,
+        "betas_0": 0.5808405626277409,
+        "betas_1": 0.016347654703255488,
+        "initial_accumulator": -0.00945741770134137,
+        "weight_decay": -0.006989575202773199,
+        "eps": 0.027643223991155576
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9986979166666666,
+      "elapsed_seconds": 375.67114791699987
+    },
+    "lamb": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.4989583984008626e-06,
+          0.41392741994529497
+        ],
+        "betas_0": [
+          0.15230891967564822,
+          0.8479788355417549
+        ],
+        "betas_1": [
+          0.1514197453279048,
+          0.8503443621825427
+        ],
+        "eps": [
+          1.6179792986873924e-09,
+          0.0006578737618206222
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "max_grad_norm": 1.0
+      },
+      "sensitivity_ST": {
+        "lr": 1.0925785136596875,
+        "betas_0": 0.26131713619002406,
+        "betas_1": 0.18449042776088317,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 0.0,
+        "max_grad_norm": 0.0,
+        "eps": 0.2007365001282384
+      },
+      "sensitivity_S1": {
+        "lr": 0.8354973287702796,
+        "betas_0": 0.10691451299655517,
+        "betas_1": 0.06816213414814647,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 0.0,
+        "max_grad_norm": 0.0,
+        "eps": 0.03288966281890366
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9704861111111112,
+      "elapsed_seconds": 459.4948493330003
+    },
+    "adan": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.6307805348009656e-06,
+          0.6377988582464726
+        ],
+        "betas_0": [
+          0.15230891967564822,
+          0.8479788355417549
+        ],
+        "betas_1": [
+          0.1514197453279048,
+          0.8503443621825427
+        ],
+        "betas_2": [
+          0.15063897389173508,
+          0.8481316499076784
+        ],
+        "max_grad_norm": [
+          1.648705987873679e-07,
+          0.061652974802620386
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.8916029841509182,
+        "betas_0": 0.26832929509532444,
+        "betas_1": 0.1207654238384845,
+        "betas_2": 0.08450512628600401,
+        "weight_decay": 0.0,
+        "max_grad_norm": 0.054382870675410075,
+        "eps": 0.048245106885642625
+      },
+      "sensitivity_S1": {
+        "lr": 0.7518423800124255,
+        "betas_0": 0.07255624911273786,
+        "betas_1": -0.014687145291013537,
+        "betas_2": 0.008888758795347403,
+        "weight_decay": 0.0,
+        "max_grad_norm": -0.012927412270793102,
+        "eps": -0.01063406086359559
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 1.0,
+      "elapsed_seconds": 516.4453348750003
+    },
+    "lion": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.6331561408515781e-07,
+          0.06377988582464726
+        ]
+      },
+      "fixed": {
+        "betas_0": 0.9,
+        "betas_1": 0.99,
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 1.0104674595170868,
+        "betas_0": 0.025978358810018216,
+        "betas_1": 0.014362680504353145,
+        "weight_decay": 0.0
+      },
+      "sensitivity_S1": {
+        "lr": 0.9751726962250704,
+        "betas_0": 0.009073791720588519,
+        "betas_1": -0.010934957094204728,
+        "weight_decay": 0.0
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 1.0,
+      "elapsed_seconds": 254.7838552910007
+    },
+    "amos": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.6307805348009656e-06,
+          0.6892721722456245
+        ],
+        "c_coef": [
+          0.0003628231436429975,
+          145.97159914823067
+        ],
+        "d_coef": [
+          0.0003356140316578771,
+          182.60318337327254
+        ]
+      },
+      "fixed": {
+        "beta": 0.999,
+        "momentum": 0.0,
+        "extra_l2": 0.0,
+        "eps": 1e-18
+      },
+      "sensitivity_ST": {
+        "lr": 0.1679026295437549,
+        "beta": 0.00128212551054114,
+        "momentum": 0.0030545900673859708,
+        "extra_l2": 0.011656015683998511,
+        "c_coef": 0.0790494166671104,
+        "d_coef": 0.845345705253159,
+        "eps": 0.0017718362272722478
+      },
+      "sensitivity_S1": {
+        "lr": 0.0986314797730605,
+        "beta": -0.0005327443081931237,
+        "momentum": -0.00688181236725357,
+        "extra_l2": -0.002174012451961478,
+        "c_coef": 0.07010326988092143,
+        "d_coef": 0.8448364896491761,
+        "eps": -0.003679986419025947
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.8910590277777778,
+      "elapsed_seconds": 525.5023048749999
+    },
+    "prodigy": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          0.0010886186853559423,
+          282.58016237564686
+        ],
+        "betas_0": [
+          0.15641074903309346,
+          0.8465845573488623
+        ],
+        "betas_1": [
+          0.16156845416501164,
+          0.8589787251930684
+        ],
+        "d0": [
+          1.495720202170733e-09,
+          0.0005692043965605261
+        ],
+        "d_coef": [
+          0.0011471636175668938,
+          355.6743207090517
+        ]
+      },
+      "fixed": {
+        "growth_rate": Infinity,
+        "weight_decay": 0.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.564485889708992,
+        "betas_0": 0.3193781575348809,
+        "betas_1": 0.2594240132827477,
+        "d0": 0.34728641134410326,
+        "d_coef": 0.3478294477510369,
+        "growth_rate": 0.0,
+        "weight_decay": 0.01766067381032363,
+        "eps": 0.02415436071425005
+      },
+      "sensitivity_S1": {
+        "lr": 0.25195537057449857,
+        "betas_0": 0.07130164043516052,
+        "betas_1": 0.011525510633179359,
+        "d0": 0.033410136268352354,
+        "d_coef": 0.1860049522515396,
+        "growth_rate": 0.0,
+        "weight_decay": -0.009078723355519482,
+        "eps": 0.01527032774076802
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.8815104166666666,
+      "elapsed_seconds": 526.8943407079996
+    },
+    "schedulefreeadamw": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          4.1058413511615795e-06,
+          1.5944971456161816
+        ],
+        "betas_0": [
+          0.14960352857597173,
+          0.8484032195098699
+        ],
+        "betas_1": [
+          0.1525463037416339,
+          0.8474967190995812
+        ],
+        "weight_lr_power": [
+          0.003264953646627821,
+          1231.2971162382203
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "r": 0.0,
+        "warmup_steps": 0.0,
+        "decoupling_c": 0.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.7684659417656292,
+        "betas_0": 0.24705180273916005,
+        "betas_1": 0.3077489751887296,
+        "weight_decay": 0.01095239779663641,
+        "r": 0.029785296340049488,
+        "weight_lr_power": 0.1309309701144528,
+        "warmup_steps": 0.0,
+        "decoupling_c": 0.030945103037291585,
+        "eps": 0.019640237532451886
+      },
+      "sensitivity_S1": {
+        "lr": 0.49833099673410647,
+        "betas_0": 0.1508690358108823,
+        "betas_1": 0.0047238148457910845,
+        "weight_decay": 0.0007047849461004245,
+        "r": -0.00617649413523303,
+        "weight_lr_power": 0.020310303997270338,
+        "warmup_steps": 0.0,
+        "decoupling_c": 0.00010615653557865497,
+        "eps": -0.015184144384320069
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9978298611111112,
+      "elapsed_seconds": 509.5769570000002
+    },
+    "ademamix": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.6307805348009656e-06,
+          0.6377988582464726
+        ],
+        "betas_0": [
+          0.15230891967564822,
+          0.8479788355417549
+        ],
+        "betas_1": [
+          0.1514197453279048,
+          0.8503443621825427
+        ],
+        "betas_2": [
+          0.15063897389173508,
+          0.8481316499076784
+        ],
+        "alpha": [
+          0.15283861610107125,
+          0.8480467660501599
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.9389048328443517,
+        "betas_0": 0.13735605118087083,
+        "betas_1": 0.13689341088274837,
+        "betas_2": 0.09144068376288567,
+        "weight_decay": 0.004565225916190543,
+        "alpha": 0.11885215719902087,
+        "eps": 0.025211823779078164
+      },
+      "sensitivity_S1": {
+        "lr": 0.8605440555627729,
+        "betas_0": 0.03983630430246622,
+        "betas_1": 0.04122623984918665,
+        "betas_2": -0.01432118474005331,
+        "weight_decay": 0.0020061933502269168,
+        "alpha": 0.06641602322153503,
+        "eps": -0.003513904296660152
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9982638888888888,
+      "elapsed_seconds": 415.3383815830002
+    },
+    "adopt": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.621426910338348e-06,
+          0.6377988582464726
+        ],
+        "betas_0": [
+          0.1521893520914018,
+          0.8472357704360038
+        ],
+        "betas_1": [
+          0.15142844042554499,
+          0.8505197289641947
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "eps": 1e-06
+      },
+      "sensitivity_ST": {
+        "lr": 0.6925149321976662,
+        "betas_0": 0.23169802115708607,
+        "betas_1": 0.2524945261459113,
+        "weight_decay": 0.0207623611352567,
+        "eps": 1.6275150238448452e-19
+      },
+      "sensitivity_S1": {
+        "lr": 0.5422251434789687,
+        "betas_0": 0.08990764900018536,
+        "betas_1": 0.08651458153898203,
+        "weight_decay": -0.005737526193386827,
+        "eps": 1.6955429207917114e-11
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 1.0,
+      "elapsed_seconds": 306.85023491599986
+    },
+    "mars": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr_1d": [
+          4.556352158045471e-06,
+          1.636782909254678
+        ],
+        "betas_1d_0": [
+          0.15203912627138197,
+          0.8439992134347558
+        ],
+        "betas_1d_1": [
+          0.15232019402459263,
+          0.8481688366699964
+        ]
+      },
+      "fixed": {
+        "lr": 0.003,
+        "betas_0": 0.95,
+        "betas_1": 0.99,
+        "gamma": 0.025,
+        "weight_decay": 0.0,
+        "weight_decay_1d": 0.1,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.0,
+        "betas_0": 0.0,
+        "betas_1": 0.0,
+        "gamma": 0.0,
+        "lr_1d": 0.8298283569286221,
+        "betas_1d_0": 0.18460495269291124,
+        "betas_1d_1": 0.21583246751353,
+        "weight_decay": 0.0,
+        "weight_decay_1d": 0.0,
+        "eps": 0.029165716304007654
+      },
+      "sensitivity_S1": {
+        "lr": 0.0,
+        "betas_0": 0.0,
+        "betas_1": 0.0,
+        "gamma": 0.0,
+        "lr_1d": 0.7880013016056447,
+        "betas_1d_0": -0.00426847404736752,
+        "betas_1d_1": 0.09270493308343222,
+        "weight_decay": 0.0,
+        "weight_decay_1d": 0.0,
+        "eps": -0.005841820780226423
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9891493055555556,
+      "elapsed_seconds": 582.1104437499998
+    },
+    "shampoo": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {},
+      "fixed": {
+        "lr": 0.001,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "preconditioning_compute_steps": 1.0,
+        "matrix_eps": 1e-06
+      },
+      "sensitivity_ST": {
+        "lr": 0.0,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "preconditioning_compute_steps": 0.0,
+        "matrix_eps": 0.0
+      },
+      "sensitivity_S1": {
+        "lr": 0.0,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "preconditioning_compute_steps": 0.0,
+        "matrix_eps": 0.0
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.5,
+      "elapsed_seconds": 287.3776028330003
+    },
+    "soap": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          4.496875195202587e-06,
+          1.456102683990322
+        ],
+        "betas_0": [
+          0.14541992905177176,
+          0.8479788355417549
+        ],
+        "betas_1": [
+          0.1514197453279048,
+          0.8503443621825427
+        ],
+        "weight_decay": [
+          0.000383080025605326,
+          0.2351760896949574
+        ]
+      },
+      "fixed": {
+        "precondition_frequency": 10.0,
+        "max_precondition_dim": 10000.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.7808065273891548,
+        "betas_0": 0.20992885419569426,
+        "betas_1": 0.20114528940629656,
+        "weight_decay": 0.10963905333643094,
+        "precondition_frequency": 0.0,
+        "max_precondition_dim": 0.0,
+        "eps": 0.03916203452458889
+      },
+      "sensitivity_S1": {
+        "lr": 0.6727754291066863,
+        "betas_0": 0.03663969341398818,
+        "betas_1": 0.06346124504616565,
+        "weight_decay": -0.029619185138283315,
+        "precondition_frequency": 0.0,
+        "max_precondition_dim": 0.0,
+        "eps": -0.016893503452438577
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9800347222222222,
+      "elapsed_seconds": 417.7364688330008
+    },
+    "muon": {
+      "status": "failed",
+      "error": "Bounds are not legal",
+      "elapsed_seconds": 0.16185425000003306
+    },
+    "lars": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          8.528683966837769e-07,
+          0.06858471095629101
+        ],
+        "momentum": [
+          0.1490686429757625,
+          0.8505197289641947
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0,
+        "dampening": 0.0,
+        "trust_coefficient": 0.001
+      },
+      "sensitivity_ST": {
+        "lr": 0.8750856117182533,
+        "weight_decay": 0.0,
+        "momentum": 0.3186540529669344,
+        "dampening": 0.005652684454037608,
+        "trust_coefficient": 0.0
+      },
+      "sensitivity_S1": {
+        "lr": 0.647684568520171,
+        "weight_decay": 0.0,
+        "momentum": 0.11585639931824925,
+        "dampening": -0.0067882553556863085,
+        "trust_coefficient": 0.0
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.7782118055555556,
+      "elapsed_seconds": 177.2364784579995
+    },
+    "madgrad": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          1.2951678511756207e-06,
+          0.26784304679876786
+        ],
+        "momentum": [
+          0.15661168618686497,
+          0.8554218047317117
+        ],
+        "eps": [
+          1.6088378952261165e-09,
+          0.0006165979442598909
+        ]
+      },
+      "fixed": {
+        "weight_decay": 0.0
+      },
+      "sensitivity_ST": {
+        "lr": 0.5801271484549864,
+        "momentum": 0.5708739897400116,
+        "weight_decay": 0.00860622818415199,
+        "eps": 0.0506653389560036
+      },
+      "sensitivity_S1": {
+        "lr": 0.29727247731846,
+        "momentum": 0.29268791717030274,
+        "weight_decay": 0.008026388142034036,
+        "eps": 0.0014754441852196046
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9262152777777778,
+      "elapsed_seconds": 265.39249474999997
+    },
+    "sm3": {
+      "status": "ok",
+      "source": "pytorch_optimizer",
+      "bounds": {
+        "lr": [
+          0.00015964906652776663,
+          53.13854293859411
+        ],
+        "momentum": [
+          0.15289248109236359,
+          0.8506299127209932
+        ],
+        "beta": [
+          0.1505888667069375,
+          0.8468688273703678
+        ]
+      },
+      "fixed": {
+        "eps": 1e-30
+      },
+      "sensitivity_ST": {
+        "lr": 0.27378826193884326,
+        "momentum": 0.37494814799904835,
+        "beta": 0.7692590312630743,
+        "eps": 0.012262661869945799
+      },
+      "sensitivity_S1": {
+        "lr": 0.056431630677097666,
+        "momentum": 0.18899871620649775,
+        "beta": 0.402598071708378,
+        "eps": -0.007258245725271665
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.9891493055555556,
+      "elapsed_seconds": 263.9203767079998
+    },
+    "adammini": {
+      "status": "ok",
+      "source": "pytorch_optimizer(special)",
+      "bounds": {},
+      "fixed": {
+        "lr": 1.0,
+        "betas_0": 0.9,
+        "betas_1": 0.999,
+        "weight_decay": 0.1,
+        "num_embeds": 2048.0,
+        "num_heads": 32.0,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": NaN,
+        "betas_0": NaN,
+        "betas_1": NaN,
+        "weight_decay": NaN,
+        "num_embeds": NaN,
+        "num_heads": NaN,
+        "eps": NaN
+      },
+      "sensitivity_S1": {
+        "lr": NaN,
+        "betas_0": NaN,
+        "betas_1": NaN,
+        "weight_decay": NaN,
+        "num_embeds": NaN,
+        "num_heads": NaN,
+        "eps": NaN
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.0,
+      "elapsed_seconds": 2.6876452500000596
+    },
+    "lookaheadradam": {
+      "status": "failed",
+      "error": "math domain error",
+      "elapsed_seconds": 0.0022150829991005594
+    },
+    "ranger21": {
+      "status": "ok",
+      "source": "pytorch_optimizer(special)",
+      "bounds": {
+        "lr": [
+          1.6538167054316961e-06,
+          0.591503312928263
+        ],
+        "betas_1": [
+          0.15185239219479263,
+          0.843777024179697
+        ],
+        "beta_softplus": [
+          0.15068830218911172,
+          0.8505442016441375
+        ],
+        "agc_clipping_value": [
+          1.702281008371388e-05,
+          6.345414111998065
+        ],
+        "lookahead_merge_time": [
+          0.007967208205826184,
+          3175.821090038072
+        ],
+        "norm_loss_factor": [
+          1.5507652675757833e-07,
+          0.058899900808458215
+        ]
+      },
+      "fixed": {
+        "beta0": 0.9,
+        "betas_0": 0.9,
+        "warm_down_min_lr": 3e-05,
+        "agc_eps": 0.001,
+        "lookahead_blending_alpha": 0.5,
+        "weight_decay": 0.0001,
+        "eps": 1e-08
+      },
+      "sensitivity_ST": {
+        "lr": 0.6053335464946124,
+        "beta0": 0.0,
+        "betas_0": 0.027658928916408004,
+        "betas_1": 0.055907812354475735,
+        "beta_softplus": 0.12976058743021635,
+        "warm_down_min_lr": 0.010286858663667749,
+        "agc_clipping_value": 0.2727532525531409,
+        "agc_eps": 0.0018402853242285718,
+        "lookahead_merge_time": 0.055593850028726154,
+        "lookahead_blending_alpha": 0.00792308871489807,
+        "weight_decay": 0.010120967495364517,
+        "norm_loss_factor": 0.09598684418497028,
+        "eps": 0.004249829725559682
+      },
+      "sensitivity_S1": {
+        "lr": 0.6085499287610668,
+        "beta0": 0.0,
+        "betas_0": 0.020169158776913283,
+        "betas_1": 0.0717922743170415,
+        "beta_softplus": 0.07026849917316165,
+        "warm_down_min_lr": 0.002182966102980964,
+        "agc_clipping_value": 0.1283320241975585,
+        "agc_eps": -0.0028124944425458234,
+        "lookahead_merge_time": 0.05075954204145155,
+        "lookahead_blending_alpha": 0.005651268742350416,
+        "weight_decay": -0.012549309950341689,
+        "norm_loss_factor": 0.06776133479986068,
+        "eps": 0.0014995190030049049
+      },
+      "surrogate_used": false,
+      "surrogate_r2": null,
+      "convergence_rate": 0.99609375,
+      "elapsed_seconds": 1096.3821025830002
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import optuna
 
-from optimbench.calibration import build_kwargs
+from optimbench.registry import expand_flat_params as build_kwargs
 
 
 def suggest_params(trial, bounds, param_spec):

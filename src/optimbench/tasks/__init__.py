@@ -1,3 +1,6 @@
+from optimbench.registry import build_optimizer
+
+
 class Task:
     name = ""
     higher_is_better = True
@@ -25,10 +28,12 @@ class Task:
     def evaluate(self, model, val_loader):
         raise NotImplementedError
 
-    def run(self, optimizer_cls, kwargs, step_budget, seed):
+    def run(self, optimizer_name, kwargs, step_budget, seed):
         train_loader, val_loader = self.build_data(seed)
         model = self.build_model(seed)
-        optimizer = optimizer_cls(model.parameters(), **kwargs)
+        optimizer = build_optimizer(
+            optimizer_name, list(model.parameters()), kwargs, model=model, num_iterations=step_budget
+        )
         history = []
         state = (train_loader, iter(train_loader)) if hasattr(train_loader, "__iter__") else train_loader
         step = 0
