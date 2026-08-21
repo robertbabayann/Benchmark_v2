@@ -20,6 +20,27 @@ TASK_TABLE = {
     "movielens": ("optimbench.tasks.recsys", "MovieLensTask", {"ratings_path": str(DATA_ROOT / "ml-1m" / "ratings.dat")}),
 }
 
+TASK_DATASETS = {
+    "cifar100": "cifar100",
+    "tiny_imagenet": "tiny_imagenet",
+    "ogbg_molhiv": "molhiv",
+    "chargpt": "shakespeare",
+    "warpeace": "warpeace",
+    "movielens": "movielens",
+}
+
+
+def ensure_data(task_names):
+    needed = sorted({TASK_DATASETS[name] for name in task_names if name in TASK_DATASETS})
+    if not needed:
+        return True
+    print(f"checking datasets: {', '.join(needed)}")
+    import prepare_data
+
+    if not prepare_data.main(needed):
+        raise RuntimeError(f"dataset preparation failed: {', '.join(needed)}")
+    return True
+
 
 def resolve_task(name):
     if name not in TASK_TABLE:

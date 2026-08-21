@@ -1,7 +1,7 @@
 from optimbench.device import resolve_device
 from optimbench.pipeline import run_pair, run_reference
 
-from common import resolve_task, save_json, select_optimizers, select_tasks
+from common import ensure_data, resolve_task, save_json, select_optimizers, select_tasks
 from settings import BENCHMARK
 
 
@@ -38,6 +38,7 @@ def main():
     tasks = select_tasks(BENCHMARK.tasks)
     optimizers = select_optimizers(BENCHMARK.optimizers)
     device = resolve_device(BENCHMARK.device)
+    ensure_data(tasks)
     print(
         f"benchmark: {len(tasks)} tasks x {len(optimizers)} optimizers on {device} "
         f"(budgets={list(BENCHMARK.budgets)}, seeds={BENCHMARK.final_seeds}) -> {BENCHMARK.output_path}"

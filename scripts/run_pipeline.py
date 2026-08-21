@@ -1,13 +1,14 @@
 from optimbench.device import resolve_device
 from optimbench.pipeline import run_pair, run_reference
 
-from common import resolve_task, save_json
+from common import ensure_data, resolve_task, save_json
 from settings import PIPELINE
 
 
 def main():
     task = resolve_task(PIPELINE.task)()
     task.device = resolve_device(PIPELINE.device)
+    ensure_data([PIPELINE.task])
 
     print(f"stage 1: reference '{PIPELINE.reference_name}' on '{PIPELINE.task}' (max_steps_cap={task.max_steps_cap}, device={task.device})")
     reference = run_reference(

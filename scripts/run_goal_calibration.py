@@ -1,13 +1,14 @@
 from optimbench.device import resolve_device
 from optimbench.pipeline import run_reference
 
-from common import resolve_task, save_json
+from common import ensure_data, resolve_task, save_json
 from settings import GOAL
 
 
 def main():
     task = resolve_task(GOAL.task)()
     task.device = resolve_device(GOAL.device)
+    ensure_data([GOAL.task])
     print(f"goal calibration: '{GOAL.reference_name}' on '{GOAL.task}' (max_steps_cap={task.max_steps_cap}, device={task.device})")
     reference = run_reference(
         task,
