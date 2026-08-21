@@ -47,9 +47,11 @@ class MovieLensTask(Task):
     max_steps_cap = 15000
     checkpoint_every = 150
 
-    def __init__(self, ratings_path, batch_size=256):
+    def __init__(self, ratings_path=None, batch_size=256, n_users=6040, n_items=3706):
         self.ratings_path = ratings_path
         self.batch_size = batch_size
+        self.n_users = n_users
+        self.n_items = n_items
 
     def build_data(self, seed):
         df = pd.read_csv(self.ratings_path, sep="::", engine="python", names=["user", "item", "rating", "ts"])

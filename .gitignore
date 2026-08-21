@@ -5,3 +5,7 @@ __pycache__/
 dist/
 build/
 *.egg
+results/
+data/
+.DS_Store
+Карточка_2.txt

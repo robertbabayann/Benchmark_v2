@@ -1,3 +1,6 @@
+import torch
+
+from optimbench.device import DeviceLoader
 from optimbench.registry import build_optimizer
 
 
@@ -6,6 +9,7 @@ class Task:
     higher_is_better = True
     max_steps_cap = 1000
     checkpoint_every = 50
+    device = torch.device("cpu")
 
     def build_model(self, seed):
         raise NotImplementedError
@@ -30,7 +34,11 @@ class Task:
 
     def run(self, optimizer_name, kwargs, step_budget, seed):
         train_loader, val_loader = self.build_data(seed)
-        model = self.build_model(seed)
+        if val_loader is not None and hasattr(val_loader, "__iter__"):
+            val_loader = DeviceLoader(val_loader, self.device)
+        if train_loader is not None and hasattr(train_loader, "__iter__"):
+            train_loader = DeviceLoader(train_loader, self.device)
+        model = self.build_model(seed).to(self.device)
         optimizer = build_optimizer(
             optimizer_name, list(model.parameters()), kwargs, model=model, num_iterations=step_budget
         )

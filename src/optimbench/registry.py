@@ -178,4 +178,14 @@ def build_optimizer(name, params, kwargs, model=None, num_iterations=None):
         base = po.RAdam(params, **base_kwargs)
         return po.Lookahead(base, params=params, **wrapper_kwargs)
 
+    if name == "muon":
+        matrix_params = [p for p in params if p.ndim >= 2]
+        vector_params = [p for p in params if p.ndim < 2]
+        groups = []
+        if matrix_params:
+            groups.append({"params": matrix_params, "use_muon": True})
+        if vector_params:
+            groups.append({"params": vector_params, "use_muon": False})
+        return po.Muon(groups, ns_steps=int(kwargs.pop("ns_steps", 5)), **kwargs)
+
     return resolve_base(name)(params, **kwargs)

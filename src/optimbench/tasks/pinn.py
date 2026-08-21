@@ -41,8 +41,9 @@ class BurgersTask(Task):
 
     def loss_and_metric(self, model, batch):
         generator = batch
-        x_f = (torch.rand(self.n_collocation, 1, generator=generator) * 2 - 1).requires_grad_(True)
-        t_f = torch.rand(self.n_collocation, 1, generator=generator).requires_grad_(True)
+        device = self.device
+        x_f = ((torch.rand(self.n_collocation, 1, generator=generator) * 2 - 1).to(device)).requires_grad_(True)
+        t_f = torch.rand(self.n_collocation, 1, generator=generator).to(device).requires_grad_(True)
         u = model(x_f, t_f)
         u_t = torch.autograd.grad(u, t_f, torch.ones_like(u), create_graph=True)[0]
         u_x = torch.autograd.grad(u, x_f, torch.ones_like(u), create_graph=True)[0]
@@ -50,13 +51,13 @@ class BurgersTask(Task):
         residual = u_t + u * u_x - self.nu * u_xx
         f_loss = (residual ** 2).mean()
 
-        x_b = torch.cat([torch.full((self.n_boundary // 2, 1), -1.0), torch.full((self.n_boundary // 2, 1), 1.0)])
-        t_b = torch.rand(self.n_boundary, 1, generator=generator)
+        x_b = torch.cat([torch.full((self.n_boundary // 2, 1), -1.0), torch.full((self.n_boundary // 2, 1), 1.0)]).to(device)
+        t_b = torch.rand(self.n_boundary, 1, generator=generator).to(device)
         u_b = model(x_b, t_b)
         b_loss = (u_b ** 2).mean()
 
-        x_i = torch.rand(self.n_initial, 1, generator=generator) * 2 - 1
-        t_i = torch.zeros(self.n_initial, 1)
+        x_i = (torch.rand(self.n_initial, 1, generator=generator) * 2 - 1).to(device)
+        t_i = torch.zeros(self.n_initial, 1, device=device)
         u_i = model(x_i, t_i)
         target_i = -torch.sin(3.14159265 * x_i)
         i_loss = ((u_i - target_i) ** 2).mean()
@@ -65,8 +66,8 @@ class BurgersTask(Task):
 
     def evaluate(self, model, val_loader):
         generator = torch.Generator().manual_seed(12345)
-        x = torch.rand(1000, 1, generator=generator) * 2 - 1
-        t = torch.rand(1000, 1, generator=generator)
+        x = (torch.rand(1000, 1, generator=generator) * 2 - 1).to(self.device)
+        t = torch.rand(1000, 1, generator=generator).to(self.device)
         with torch.no_grad():
             u = model(x, t)
         return float((u ** 2).mean().item())

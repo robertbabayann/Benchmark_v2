@@ -14,9 +14,35 @@ def train_eval_wrapper(task, optimizer_name, kwargs, seed, step_budget):
     return metric, nfe
 
 
-def run_pair(task, optimizer_name, adamw_targets=None):
+def run_reference(task, reference_name="adamw", n_trials=None, final_seeds=None, sampler_seed=None):
+    spec = param_spec(reference_name)
+    calib = calibrate(reference_name, spec, CALIBRATION)
+    tuning_seed = TUNING.sampler_seed if sampler_seed is None else sampler_seed
+    trials = TUNING.budgets["medium"] if n_trials is None else n_trials
+
+    def train_eval_fn(name, kwargs, trial_number):
+        metric, nfe = train_eval_wrapper(task, name, kwargs, tuning_seed, task.max_steps_cap // 4)
+        return (metric if task.higher_is_better else -metric), nfe
+
+    best_kwargs, _ = tune_optimizer(
+        reference_name, spec, calib["active_bounds"], calib["fixed"],
+        train_eval_fn, trials, tuning_seed
+    )
+
+    seeds = RUN.final_seeds if final_seeds is None else final_seeds
+    histories = [
+        task.run(reference_name, best_kwargs, task.max_steps_cap, seed)
+        for seed in range(seeds)
+    ]
+    return calibrate_targets(histories, TARGETS.levels, TARGETS.max_budget_multiplier, task.higher_is_better)
+
+
+def run_pair(task, optimizer_name, reference, budgets=None, final_seeds=None, sampler_seed=None):
     spec = param_spec(optimizer_name)
     calib = calibrate(optimizer_name, spec, CALIBRATION)
+    budget_map = TUNING.budgets if budgets is None else budgets
+    seeds_count = RUN.final_seeds if final_seeds is None else final_seeds
+    tuning_seed = TUNING.sampler_seed if sampler_seed is None else sampler_seed
 
     cm = cost_multiplier(
         lambda: task.build_model(0),
@@ -26,28 +52,26 @@ def run_pair(task, optimizer_name, adamw_targets=None):
     )
 
     def train_eval_fn(name, kwargs, trial_number):
-        seed = TUNING.sampler_seed
-        metric, nfe = train_eval_wrapper(task, name, kwargs, seed, task.max_steps_cap // 4)
+        metric, nfe = train_eval_wrapper(task, name, kwargs, tuning_seed, task.max_steps_cap // 4)
         return (metric if task.higher_is_better else -metric), nfe
 
     results = {}
-    for budget_name, n_trials in TUNING.budgets.items():
+    step_budget = int(round(reference["max_budget"]))
+    targets = reference["targets"]
+
+    for budget_name, n_trials in budget_map.items():
         best_kwargs, tuning_nfe = tune_optimizer(
             optimizer_name, spec, calib["active_bounds"], calib["fixed"],
-            train_eval_fn, n_trials, TUNING.sampler_seed
+            train_eval_fn, n_trials, tuning_seed
         )
         histories, train_nfe_total = [], 0
-        for seed in range(RUN.final_seeds):
-            history = task.run(optimizer_name, best_kwargs, task.max_steps_cap, seed)
+        for seed in range(seeds_count):
+            history = task.run(optimizer_name, best_kwargs, step_budget, seed)
             histories.append(history)
-            train_nfe_total += history[-1][0] if history else task.max_steps_cap
+            train_nfe_total += history[-1][0] if history else step_budget
 
-        if adamw_targets is None and optimizer_name == "adamw" and budget_name == "medium":
-            adamw_targets = calibrate_targets(histories, TARGETS.levels, TARGETS.max_budget_multiplier, task.higher_is_better)
-
-        targets = adamw_targets["targets"] if adamw_targets else None
-        steps_matrix = [steps_to_targets(h, targets, task.higher_is_better) for h in histories] if targets else []
-        per_target = list(zip(*steps_matrix)) if steps_matrix else []
+        steps_matrix = [steps_to_targets(h, targets, task.higher_is_better) for h in histories]
+        per_target = list(zip(*steps_matrix))
 
         results[budget_name] = {
             "hyperparams": best_kwargs,
@@ -58,4 +82,4 @@ def run_pair(task, optimizer_name, adamw_targets=None):
             "steps_to_targets": [aggregate(list(s)) for s in per_target],
         }
 
-    return results, adamw_targets
+    return results

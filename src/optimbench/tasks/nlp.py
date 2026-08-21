@@ -82,7 +82,7 @@ class CharGPTTask(Task):
     max_steps_cap = 20000
     checkpoint_every = 200
 
-    def __init__(self, text_path, name, dim=128, depth=4, n_head=4, block_size=128, batch_size=64):
+    def __init__(self, text_path=None, name="chargpt", dim=128, depth=4, n_head=4, block_size=128, batch_size=64, vocab_size=65):
         self.text_path = text_path
         self.name = name
         self.dim = dim
@@ -90,6 +90,7 @@ class CharGPTTask(Task):
         self.n_head = n_head
         self.block_size = block_size
         self.batch_size = batch_size
+        self.vocab_size = vocab_size
 
     def build_data(self, seed):
         with open(self.text_path, "r", encoding="utf-8") as f:
@@ -121,3 +122,10 @@ class CharGPTTask(Task):
                 losses.append(loss.item())
         model.train()
         return sum(losses) / len(losses)
+
+
+class WarPeaceTask(CharGPTTask):
+    max_steps_cap = 30000
+
+    def __init__(self, text_path=None, name="warpeace", dim=384, depth=6, n_head=6, block_size=256, batch_size=64, vocab_size=150):
+        super().__init__(text_path, name, dim, depth, n_head, block_size, batch_size, vocab_size)

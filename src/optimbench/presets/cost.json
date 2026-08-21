@@ -1,0 +1,433 @@
+{
+  "task": "burgers_pinn",
+  "timing_steps": 50,
+  "seeds": 20,
+  "baseline": "adamw",
+  "results": {
+    "sgd": {
+      "step_time_ms": 0.04917228595877532,
+      "step_time_std_ms": 0.013078287208802594,
+      "kwargs": {
+        "lr": 0.001,
+        "momentum": 0.0,
+        "dampening": 0.0,
+        "weight_decay": 0.0
+      },
+      "cost_multiplier": 0.1468952162806292
+    },
+    "nag": {
+      "step_time_ms": 0.0947527510143118,
+      "step_time_std_ms": 0.008670407023403012,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0
+      },
+      "cost_multiplier": 0.28306037805728645
+    },
+    "lion": {
+      "step_time_ms": 0.10145329099032097,
+      "step_time_std_ms": 0.0037978068456875212,
+      "kwargs": {
+        "lr": 0.0001,
+        "weight_decay": 0.0,
+        "betas": [
+          0.9,
+          0.99
+        ]
+      },
+      "cost_multiplier": 0.30307728900175746
+    },
+    "adopt": {
+      "step_time_ms": 0.18292108202876992,
+      "step_time_std_ms": 0.005132569874312695,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "eps": 1e-06,
+        "betas": [
+          0.9,
+          0.9999
+        ]
+      },
+      "cost_multiplier": 0.5464507370967079
+    },
+    "lars": {
+      "step_time_ms": 0.18596770503791046,
+      "step_time_std_ms": 0.006489308813749077,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "momentum": 0.9,
+        "dampening": 0.0,
+        "trust_coefficient": 0.001
+      },
+      "cost_multiplier": 0.5555520903717711
+    },
+    "adabelief": {
+      "step_time_ms": 0.20012166896776767,
+      "step_time_std_ms": 0.00767152496373663,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "eps": 1e-16,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.5978350461499039
+    },
+    "rmsprop": {
+      "step_time_ms": 0.24116116399818563,
+      "step_time_std_ms": 0.009225637105836102,
+      "kwargs": {
+        "lr": 0.01,
+        "alpha": 0.99,
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "momentum": 0.0
+      },
+      "cost_multiplier": 0.7204347053074055
+    },
+    "radam": {
+      "step_time_ms": 0.26827379201131407,
+      "step_time_std_ms": 0.004239290103681991,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.8014298284396459
+    },
+    "lookaheadradam": {
+      "step_time_ms": 0.2842216670396738,
+      "step_time_std_ms": 0.00865922830215206,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "eps": 1e-08,
+        "k": 5.0,
+        "alpha": 0.5,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.8490718386864621
+    },
+    "adam": {
+      "step_time_ms": 0.3105075829807902,
+      "step_time_std_ms": 0.008040068168284183,
+      "kwargs": {
+        "lr": 0.001,
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.9275972769901016
+    },
+    "lamb": {
+      "step_time_ms": 0.3165193750028266,
+      "step_time_std_ms": 0.007979618032547299,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "max_grad_norm": 1.0,
+        "eps": 1e-06,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.9455566513021191
+    },
+    "schedulefreeadamw": {
+      "step_time_ms": 0.3185600440046983,
+      "step_time_std_ms": 0.008269425687736259,
+      "kwargs": {
+        "lr": 0.0025,
+        "weight_decay": 0.0,
+        "r": 0.0,
+        "weight_lr_power": 2.0,
+        "warmup_steps": 0.0,
+        "decoupling_c": 0.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.951652859939611
+    },
+    "madgrad": {
+      "step_time_ms": 0.32279820597614156,
+      "step_time_std_ms": 0.003939620639308856,
+      "kwargs": {
+        "lr": 0.001,
+        "momentum": 0.9,
+        "weight_decay": 0.0,
+        "eps": 1e-06
+      },
+      "cost_multiplier": 0.9643137665313737
+    },
+    "amsgrad": {
+      "step_time_ms": 0.3241025430179434,
+      "step_time_std_ms": 0.006857683161180567,
+      "kwargs": {
+        "lr": 0.001,
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.968210288080503
+    },
+    "yogi": {
+      "step_time_ms": 0.32552949899400113,
+      "step_time_std_ms": 0.007999119653919333,
+      "kwargs": {
+        "lr": 0.01,
+        "initial_accumulator": 1e-06,
+        "weight_decay": 0.0,
+        "eps": 0.001,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.9724731162699769
+    },
+    "prodigy": {
+      "step_time_ms": 0.3303592050360749,
+      "step_time_std_ms": 0.0035585824871177158,
+      "kwargs": {
+        "lr": 1.0,
+        "d0": 1e-06,
+        "d_coef": 1.0,
+        "growth_rate": null,
+        "weight_decay": 0.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 0.986901176706644
+    },
+    "adamw": {
+      "step_time_ms": 0.33474395697703585,
+      "step_time_std_ms": 0.006101164608224602,
+      "kwargs": {
+        "lr": 0.001,
+        "eps": 1e-08,
+        "weight_decay": 0.01,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 1.0
+    },
+    "adammini": {
+      "step_time_ms": 0.346382289979374,
+      "step_time_std_ms": 0.006882398690365306,
+      "kwargs": {
+        "lr": 1.0,
+        "weight_decay": 0.1,
+        "num_embeds": 2048.0,
+        "num_heads": 32.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 1.0347678658860346
+    },
+    "adan": {
+      "step_time_ms": 0.3471008719934616,
+      "step_time_std_ms": 0.007338767434009923,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "max_grad_norm": 0.0,
+        "eps": 1e-08,
+        "betas": [
+          0.98,
+          0.92,
+          0.99
+        ]
+      },
+      "cost_multiplier": 1.0369145275332736
+    },
+    "adadelta": {
+      "step_time_ms": 0.3581495840335264,
+      "step_time_std_ms": 0.005837813868593983,
+      "kwargs": {
+        "lr": 1.0,
+        "rho": 0.9,
+        "weight_decay": 0.0,
+        "eps": 1e-06
+      },
+      "cost_multiplier": 1.0699209845873223
+    },
+    "nadam": {
+      "step_time_ms": 0.35922254406614224,
+      "step_time_std_ms": 0.0098273313680488,
+      "kwargs": {
+        "lr": 0.002,
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "momentum_decay": 0.004,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 1.0731263002031899
+    },
+    "ademamix": {
+      "step_time_ms": 0.36269812601676676,
+      "step_time_std_ms": 0.012351031931508482,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "alpha": 5.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999,
+          0.9999
+        ]
+      },
+      "cost_multiplier": 1.0835091073552932
+    },
+    "diffgrad": {
+      "step_time_ms": 0.38361787400208414,
+      "step_time_std_ms": 0.006807552543869381,
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 1.1460038814932247
+    },
+    "amos": {
+      "step_time_ms": 0.4279604990006191,
+      "step_time_std_ms": 0.008434694955442995,
+      "kwargs": {
+        "lr": 0.001,
+        "beta": 0.999,
+        "momentum": 0.0,
+        "extra_l2": 0.0,
+        "c_coef": 0.25,
+        "d_coef": 0.25,
+        "eps": 1e-18
+      },
+      "cost_multiplier": 1.2784711720127575
+    },
+    "sm3": {
+      "step_time_ms": 0.464044913998805,
+      "step_time_std_ms": 0.01937831422931986,
+      "kwargs": {
+        "lr": 0.1,
+        "momentum": 0.0,
+        "beta": 0.0,
+        "eps": 1e-30
+      },
+      "cost_multiplier": 1.3862682337552683
+    },
+    "mars": {
+      "step_time_ms": 0.48201716902258335,
+      "step_time_std_ms": 0.007199619630996979,
+      "kwargs": {
+        "lr": 0.003,
+        "gamma": 0.025,
+        "lr_1d": 0.003,
+        "weight_decay": 0.0,
+        "weight_decay_1d": 0.1,
+        "eps": 1e-08,
+        "betas": [
+          0.95,
+          0.99
+        ],
+        "betas_1d": [
+          0.9,
+          0.95
+        ]
+      },
+      "cost_multiplier": 1.4399577915476776
+    },
+    "soap": {
+      "step_time_ms": 1.0841937909863193,
+      "step_time_std_ms": 0.03654776711707888,
+      "kwargs": {
+        "lr": 0.003,
+        "weight_decay": 0.01,
+        "precondition_frequency": 10.0,
+        "max_precondition_dim": 10000.0,
+        "eps": 1e-08,
+        "betas": [
+          0.95,
+          0.95
+        ]
+      },
+      "cost_multiplier": 3.2388748725363765
+    },
+    "shampoo": {
+      "step_time_ms": 1.587033665011404,
+      "step_time_std_ms": 0.022053858570490553,
+      "kwargs": {
+        "lr": 0.001,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "preconditioning_compute_steps": 1.0,
+        "matrix_eps": 1e-06
+      },
+      "cost_multiplier": 4.741037536101893
+    },
+    "ranger21": {
+      "step_time_ms": 1.6598634580150244,
+      "step_time_std_ms": 0.3825901660951386,
+      "kwargs": {
+        "lr": 0.001,
+        "beta0": 0.9,
+        "beta_softplus": 50.0,
+        "warm_down_min_lr": 3e-05,
+        "agc_clipping_value": 0.01,
+        "agc_eps": 0.001,
+        "lookahead_merge_time": 5.0,
+        "lookahead_blending_alpha": 0.5,
+        "weight_decay": 0.0001,
+        "norm_loss_factor": 0.0001,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "cost_multiplier": 4.958606192639632
+    }
+  },
+  "failed": {
+    "muon": "Tensor.__contains__ only supports Tensor or scalar, but you passed in a <class 'str'>."
+  }
+}

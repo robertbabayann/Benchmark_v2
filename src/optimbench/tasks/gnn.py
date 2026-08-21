@@ -34,9 +34,10 @@ class MolHivTask(Task):
     max_steps_cap = 15000
     checkpoint_every = 150
 
-    def __init__(self, data_root, batch_size=64):
+    def __init__(self, data_root=None, batch_size=64, in_dim=9):
         self.data_root = data_root
         self.batch_size = batch_size
+        self.in_dim = in_dim
 
     def build_data(self, seed):
         dataset = PygGraphPropPredDataset(name="ogbg-molhiv", root=self.data_root)

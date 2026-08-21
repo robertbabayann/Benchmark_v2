@@ -1,5 +1,17 @@
 import math
 import torch
+import torch.nn as nn
+
+
+class TestFunctionModel(nn.Module):
+    def __init__(self, function, seed=0):
+        super().__init__()
+        torch.manual_seed(seed)
+        self.function = function
+        self.x = nn.Parameter(torch.empty(function.dim).uniform_(*function.bounds))
+
+    def forward(self):
+        return self.function(self.x)
 
 
 class TestFunction:

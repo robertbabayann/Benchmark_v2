@@ -1,15 +1,15 @@
-import json
-import math
 import time
 import traceback
 import dataclasses
-from pathlib import Path
 from datetime import datetime, timezone
 from tqdm import tqdm
 
-from optimbench.config import CALIBRATION
-from optimbench.registry import full_registry, param_spec, optimizer_source
+from optimbench.config import CALIBRATION as DEFAULT_CALIBRATION
+from optimbench.registry import param_spec, optimizer_source
 from optimbench.calibration import calibrate
+
+from common import save_json, select_optimizers
+from settings import CALIBRATION_RUN
 
 
 def convergence_rate(records):
@@ -23,25 +23,21 @@ def serialize_bounds(bounds):
     return {k: [v[0], v[1]] for k, v in bounds.items()}
 
 
-def sanitize(obj):
-    if isinstance(obj, float):
-        if math.isnan(obj) or math.isinf(obj):
-            return None
-        return obj
-    if isinstance(obj, dict):
-        return {k: sanitize(v) for k, v in obj.items()}
-    if isinstance(obj, list):
-        return [sanitize(v) for v in obj]
-    return obj
+def build_config():
+    return dataclasses.replace(
+        DEFAULT_CALIBRATION,
+        sobol_points=CALIBRATION_RUN.sobol_points,
+        seeds_per_point=CALIBRATION_RUN.seeds_per_point,
+        steps_per_run=CALIBRATION_RUN.steps_per_run,
+        sensitivity_samples=CALIBRATION_RUN.sensitivity_samples,
+        bound_low_percentile=CALIBRATION_RUN.bound_low_percentile,
+        bound_high_percentile=CALIBRATION_RUN.bound_high_percentile,
+        use_surrogate=CALIBRATION_RUN.use_surrogate,
+    )
 
 
-def run_full_calibration(output_path):
-    names = full_registry()
-    summary = {"config": dataclasses.asdict(CALIBRATION), "optimizers": {}}
-
-    output = Path(output_path)
-    output.parent.mkdir(parents=True, exist_ok=True)
-
+def calibrate_all(cfg, names, output_path):
+    summary = {"config": dataclasses.asdict(cfg), "optimizers": {}}
     progress = tqdm(names, desc="calibrating", unit="optimizer")
     for name in progress:
         progress.set_postfix_str(name)
@@ -49,7 +45,7 @@ def run_full_calibration(output_path):
         start = time.perf_counter()
         try:
             spec = param_spec(name)
-            result = calibrate(name, spec, CALIBRATION)
+            result = calibrate(name, spec, cfg)
             entry = {
                 "status": "ok",
                 "source": optimizer_source(name),
@@ -70,10 +66,19 @@ def run_full_calibration(output_path):
         entry["finished_at"] = datetime.now(timezone.utc).isoformat()
         entry["elapsed_seconds"] = time.perf_counter() - start
         summary["optimizers"][name] = entry
-        output.write_text(json.dumps(sanitize(summary), indent=2))
+        save_json(output_path, summary)
+    return summary
 
+
+def main():
+    cfg = build_config()
+    names = select_optimizers(CALIBRATION_RUN.optimizers)
+    print(f"calibration: {len(names)} optimizers -> {CALIBRATION_RUN.output_path}")
+    summary = calibrate_all(cfg, names, CALIBRATION_RUN.output_path)
+    failed = [name for name, entry in summary["optimizers"].items() if entry["status"] != "ok"]
+    print(f"done: {len(names) - len(failed)} ok, {len(failed)} failed")
     return summary
 
 
 if __name__ == "__main__":
-    run_full_calibration("results/calibration_summary.json")
+    main()
