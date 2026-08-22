@@ -4,17 +4,23 @@ import torch
 from optimbench.registry import build_optimizer
 
 
+def synchronize(device):
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+    elif device.type == "mps":
+        torch.mps.synchronize()
+
+
 def measure_step_time(model, optimizer_name, kwargs, steps):
     optimizer = build_optimizer(optimizer_name, list(model.parameters()), kwargs, model=model, num_iterations=steps)
     for p in model.parameters():
         p.grad = torch.zeros_like(p)
-    if torch.cuda.is_available():
-        torch.cuda.synchronize()
+    device = next(model.parameters()).device
+    synchronize(device)
     start = time.perf_counter()
     for _ in range(steps):
         optimizer.step()
-    if torch.cuda.is_available():
-        torch.cuda.synchronize()
+    synchronize(device)
     return (time.perf_counter() - start) / steps
 
 

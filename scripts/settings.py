@@ -44,6 +44,7 @@ class PipelineSettings:
 class CostSettings:
     tasks: tuple = ()
     optimizers: tuple = ()
+    device: str = "auto"
     baseline: str = "adamw"
     timing_steps: int = 50
     seeds: int = 10
