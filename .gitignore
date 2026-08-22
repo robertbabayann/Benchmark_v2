@@ -8,3 +8,4 @@ build/
 results/
 data/
 .DS_Store
+pyrightconfig.json
