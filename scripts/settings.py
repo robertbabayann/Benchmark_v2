@@ -48,6 +48,7 @@ class CostSettings:
     baseline: str = "adamw"
     timing_steps: int = 50
     seeds: int = 10
+    retry_failed: bool = False
     output_path: str = str(PRESETS_DIR / "cost.json")
 
 

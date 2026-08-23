@@ -1034,39 +1034,6 @@
       "step_time_ms": 11.066390694857157,
       "cost_multiplier": 4.985266690003693
     },
-    "adammini": {
-      "kwargs": {
-        "lr": 1.0,
-        "weight_decay": 0.1,
-        "num_embeds": 2048.0,
-        "num_heads": 32.0,
-        "eps": 1e-08,
-        "betas": [
-          0.9,
-          0.999
-        ]
-      },
-      "tasks": {
-        "burgers_pinn": {
-          "step_time_ms": 2.5368606360007107,
-          "step_time_std_ms": 0.020883772181701347
-        },
-        "cifar100": {
-          "step_time_ms": 14.525911690000616,
-          "step_time_std_ms": 0.3181868403922923
-        },
-        "ogbg_molhiv": {
-          "step_time_ms": 5.763956661999146,
-          "step_time_std_ms": 0.24645669993388222
-        },
-        "movielens": {
-          "step_time_ms": 2.255829486000948,
-          "step_time_std_ms": 0.04259302368537868
-        }
-      },
-      "step_time_ms": 6.270639618500355,
-      "cost_multiplier": 5.325752339180651
-    },
     "mars": {
       "kwargs": {
         "lr": 0.003,
@@ -1116,6 +1083,51 @@
       },
       "step_time_ms": 15.046800624000038,
       "cost_multiplier": 6.184512880123528
+    },
+    "adammini": {
+      "kwargs": {
+        "lr": 1.0,
+        "weight_decay": 0.1,
+        "num_embeds": 2048.0,
+        "num_heads": 32.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 2.5368606360007107,
+          "step_time_std_ms": 0.020883772181701347
+        },
+        "cifar100": {
+          "step_time_ms": 14.525911690000616,
+          "step_time_std_ms": 0.3181868403922923
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 5.763956661999146,
+          "step_time_std_ms": 0.24645669993388222
+        },
+        "movielens": {
+          "step_time_ms": 2.255829486000948,
+          "step_time_std_ms": 0.04259302368537868
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 151.929621006,
+          "step_time_std_ms": 21.043119021093595
+        },
+        "chargpt": {
+          "step_time_ms": 41.790405668000034,
+          "step_time_std_ms": 5.267698998242657
+        },
+        "warpeace": {
+          "step_time_ms": 64.61949366600003,
+          "step_time_std_ms": 4.7505920912871344
+        }
+      },
+      "step_time_ms": 40.48886840200021,
+      "cost_multiplier": 14.237703153573623
     },
     "muon": {
       "kwargs": {
@@ -1301,10 +1313,5 @@
       "cost_multiplier": 190.52037085486128
     }
   },
-  "failed": {
-    "muon": "Tensor.__contains__ only supports Tensor or scalar, but you passed in a <class 'str'>.",
-    "adammini:tiny_imagenet": "view() received an invalid combination of arguments - got (float, float, int), but expected one of:\n * (torch.dtype dtype)\n * (tuple of ints size)\n",
-    "adammini:chargpt": "view() received an invalid combination of arguments - got (float, float, int), but expected one of:\n * (torch.dtype dtype)\n * (tuple of ints size)\n",
-    "adammini:warpeace": "view() received an invalid combination of arguments - got (float, float, int), but expected one of:\n * (torch.dtype dtype)\n * (tuple of ints size)\n"
-  }
+  "failed": {}
 }

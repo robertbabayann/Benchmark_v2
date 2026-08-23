@@ -21,6 +21,17 @@ def load_previous(output_path):
     return {}, {}
 
 
+def prune_resolved(failed, results):
+    pruned = {}
+    for key, reason in failed.items():
+        name, _, task = key.partition(":")
+        entry = results.get(name)
+        if entry and (not task or task in entry.get("tasks", {})):
+            continue
+        pruned[key] = reason
+    return pruned
+
+
 def build_payload(results, failed):
     baseline_tasks = results.get(COST.baseline, {}).get("tasks", {})
     for entry in results.values():
@@ -40,7 +51,7 @@ def build_payload(results, failed):
         "seeds": COST.seeds,
         "baseline": COST.baseline,
         "results": dict(ordered),
-        "failed": failed,
+        "failed": prune_resolved(failed, results),
     }
 
 
@@ -90,7 +101,8 @@ def main():
             missing = [
                 task_name
                 for task_name in tasks
-                if (not entry or task_name not in entry["tasks"]) and f"{name}:{task_name}" not in failed
+                if (not entry or task_name not in entry["tasks"])
+                and (COST.retry_failed or f"{name}:{task_name}" not in failed)
             ]
             if not missing:
                 print(f"  skipped (already measured): {name}")
