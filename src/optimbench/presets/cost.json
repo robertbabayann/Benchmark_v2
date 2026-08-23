@@ -1,32 +1,87 @@
 {
-  "task": "burgers_pinn",
   "timing_steps": 50,
-  "seeds": 20,
+  "seeds": 10,
   "baseline": "adamw",
   "results": {
     "sgd": {
-      "step_time_ms": 0.04917228595877532,
-      "step_time_std_ms": 0.013078287208802594,
       "kwargs": {
         "lr": 0.001,
         "momentum": 0.0,
         "dampening": 0.0,
         "weight_decay": 0.0
       },
-      "cost_multiplier": 0.1468952162806292
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.16537843200001134,
+          "step_time_std_ms": 0.2010959279778835
+        },
+        "cifar100": {
+          "step_time_ms": 1.8106097739998857,
+          "step_time_std_ms": 0.018571799280535334
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 1.3806983480001236,
+          "step_time_std_ms": 0.007253585003014131
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.13146213400023044,
+          "step_time_std_ms": 0.005691188945633077
+        },
+        "chargpt": {
+          "step_time_ms": 0.19402117800007093,
+          "step_time_std_ms": 0.010113762707130132
+        },
+        "warpeace": {
+          "step_time_ms": 0.5487890979999291,
+          "step_time_std_ms": 0.005048754843073854
+        },
+        "movielens": {
+          "step_time_ms": 0.08793947599986042,
+          "step_time_std_ms": 0.0036706944155181134
+        }
+      },
+      "step_time_ms": 0.6169854914285874,
+      "cost_multiplier": 0.20631412126213414
     },
     "nag": {
-      "step_time_ms": 0.0947527510143118,
-      "step_time_std_ms": 0.008670407023403012,
       "kwargs": {
         "lr": 0.001,
         "weight_decay": 0.0
       },
-      "cost_multiplier": 0.28306037805728645
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.18969243399988045,
+          "step_time_std_ms": 0.08526783394710899
+        },
+        "cifar100": {
+          "step_time_ms": 6.730712998000059,
+          "step_time_std_ms": 0.03606092068329334
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 5.142751438000232,
+          "step_time_std_ms": 0.0032294789280061316
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.22653189200013915,
+          "step_time_std_ms": 0.0062036023536506885
+        },
+        "chargpt": {
+          "step_time_ms": 0.31993952999994235,
+          "step_time_std_ms": 0.012732830826632076
+        },
+        "warpeace": {
+          "step_time_ms": 2.028023023999595,
+          "step_time_std_ms": 0.006018792442325855
+        },
+        "movielens": {
+          "step_time_ms": 0.16063818800000718,
+          "step_time_std_ms": 0.006469885738937966
+        }
+      },
+      "step_time_ms": 2.1140413577142647,
+      "cost_multiplier": 0.44731837067961877
     },
     "lion": {
-      "step_time_ms": 0.10145329099032097,
-      "step_time_std_ms": 0.0037978068456875212,
       "kwargs": {
         "lr": 0.0001,
         "weight_decay": 0.0,
@@ -35,37 +90,81 @@
           0.99
         ]
       },
-      "cost_multiplier": 0.30307728900175746
-    },
-    "adopt": {
-      "step_time_ms": 0.18292108202876992,
-      "step_time_std_ms": 0.005132569874312695,
-      "kwargs": {
-        "lr": 0.001,
-        "weight_decay": 0.0,
-        "eps": 1e-06,
-        "betas": [
-          0.9,
-          0.9999
-        ]
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.21056053600000274,
+          "step_time_std_ms": 0.02708327459645649
+        },
+        "cifar100": {
+          "step_time_ms": 9.330517541999827,
+          "step_time_std_ms": 0.002123587116943579
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 7.097132974000033,
+          "step_time_std_ms": 0.002627964153461087
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.3198148639996817,
+          "step_time_std_ms": 0.012935864304338273
+        },
+        "chargpt": {
+          "step_time_ms": 0.4666746460000013,
+          "step_time_std_ms": 0.013317598997455816
+        },
+        "warpeace": {
+          "step_time_ms": 2.808501390000174,
+          "step_time_std_ms": 0.002165019769809828
+        },
+        "movielens": {
+          "step_time_ms": 0.19415089599988278,
+          "step_time_std_ms": 0.005214714199715728
+        }
       },
-      "cost_multiplier": 0.5464507370967079
+      "step_time_ms": 2.918193263999943,
+      "cost_multiplier": 0.5972012586356057
     },
-    "lars": {
-      "step_time_ms": 0.18596770503791046,
-      "step_time_std_ms": 0.006489308813749077,
+    "rmsprop": {
       "kwargs": {
-        "lr": 0.001,
+        "lr": 0.01,
+        "alpha": 0.99,
+        "eps": 1e-08,
         "weight_decay": 0.0,
-        "momentum": 0.9,
-        "dampening": 0.0,
-        "trust_coefficient": 0.001
+        "momentum": 0.0
       },
-      "cost_multiplier": 0.5555520903717711
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.42077741599996443,
+          "step_time_std_ms": 0.24989819139141983
+        },
+        "cifar100": {
+          "step_time_ms": 8.10712067400027,
+          "step_time_std_ms": 0.0016171661661074995
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 6.207174664000149,
+          "step_time_std_ms": 0.005788894300882134
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.48180455000010625,
+          "step_time_std_ms": 0.010477166500154664
+        },
+        "chargpt": {
+          "step_time_ms": 0.6608333259998744,
+          "step_time_std_ms": 0.009360517683199105
+        },
+        "warpeace": {
+          "step_time_ms": 2.4596918459999415,
+          "step_time_std_ms": 0.0014171594395622836
+        },
+        "movielens": {
+          "step_time_ms": 0.36804021000000375,
+          "step_time_std_ms": 0.07911300501764655
+        }
+      },
+      "step_time_ms": 2.672206098000044,
+      "cost_multiplier": 0.7513355431646992
     },
     "adabelief": {
-      "step_time_ms": 0.20012166896776767,
-      "step_time_std_ms": 0.00767152496373663,
       "kwargs": {
         "lr": 0.001,
         "weight_decay": 0.0,
@@ -76,23 +175,382 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.5978350461499039
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.3147719940000115,
+          "step_time_std_ms": 0.02413843296541228
+        },
+        "cifar100": {
+          "step_time_ms": 12.944653287999927,
+          "step_time_std_ms": 0.0031949696764271974
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 9.895277266000107,
+          "step_time_std_ms": 0.0042293497394103935
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.4640945000003284,
+          "step_time_std_ms": 0.01229438376668037
+        },
+        "chargpt": {
+          "step_time_ms": 0.6798744759998955,
+          "step_time_std_ms": 0.014782882242481215
+        },
+        "warpeace": {
+          "step_time_ms": 3.914138953999782,
+          "step_time_std_ms": 0.0014336145650578264
+        },
+        "movielens": {
+          "step_time_ms": 0.28322712399995,
+          "step_time_std_ms": 0.01216081534713694
+        }
+      },
+      "step_time_ms": 4.070862514571429,
+      "cost_multiplier": 0.8517304457542872
     },
-    "rmsprop": {
-      "step_time_ms": 0.24116116399818563,
-      "step_time_std_ms": 0.009225637105836102,
+    "adopt": {
       "kwargs": {
-        "lr": 0.01,
-        "alpha": 0.99,
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "eps": 1e-06,
+        "betas": [
+          0.9,
+          0.9999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.3054472980002174,
+          "step_time_std_ms": 0.018414614902622792
+        },
+        "cifar100": {
+          "step_time_ms": 13.48450295199973,
+          "step_time_std_ms": 0.003971060745807895
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 10.335032704000241,
+          "step_time_std_ms": 0.0050963083833088455
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.49488143200028384,
+          "step_time_std_ms": 0.0504388616527398
+        },
+        "chargpt": {
+          "step_time_ms": 0.7148340759999883,
+          "step_time_std_ms": 0.015034118601364948
+        },
+        "warpeace": {
+          "step_time_ms": 4.095013526000229,
+          "step_time_std_ms": 0.001723799143342114
+        },
+        "movielens": {
+          "step_time_ms": 0.2993922959999509,
+          "step_time_std_ms": 0.008633921352109193
+        }
+      },
+      "step_time_ms": 4.247014897714378,
+      "cost_multiplier": 0.8856807511786096
+    },
+    "adam": {
+      "kwargs": {
+        "lr": 0.001,
         "eps": 1e-08,
         "weight_decay": 0.0,
-        "momentum": 0.0
+        "betas": [
+          0.9,
+          0.999
+        ]
       },
-      "cost_multiplier": 0.7204347053074055
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.4715871399997696,
+          "step_time_std_ms": 0.1694898421785717
+        },
+        "cifar100": {
+          "step_time_ms": 11.187361438000039,
+          "step_time_std_ms": 0.006281863652086624
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 8.62066706999974,
+          "step_time_std_ms": 0.006856667184198911
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.6104964899998321,
+          "step_time_std_ms": 0.016274518676876012
+        },
+        "chargpt": {
+          "step_time_ms": 0.8756059199998846,
+          "step_time_std_ms": 0.01868006815380278
+        },
+        "warpeace": {
+          "step_time_ms": 3.408886686000074,
+          "step_time_std_ms": 0.0021867096481581224
+        },
+        "movielens": {
+          "step_time_ms": 0.3955651259997239,
+          "step_time_std_ms": 0.013667202100352889
+        }
+      },
+      "step_time_ms": 3.6528814099998663,
+      "cost_multiplier": 0.9465157350211307
+    },
+    "adamw": {
+      "kwargs": {
+        "lr": 0.001,
+        "eps": 1e-08,
+        "weight_decay": 0.01,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.42077620199984267,
+          "step_time_std_ms": 0.011081249739660494
+        },
+        "cifar100": {
+          "step_time_ms": 12.449782775999893,
+          "step_time_std_ms": 0.0040635462448960335
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 9.580969319999895,
+          "step_time_std_ms": 0.0053163401848405935
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.647121038000023,
+          "step_time_std_ms": 0.008638672349253975
+        },
+        "chargpt": {
+          "step_time_ms": 0.9190428720000908,
+          "step_time_std_ms": 0.010589164128036248
+        },
+        "warpeace": {
+          "step_time_ms": 3.794046326000171,
+          "step_time_std_ms": 0.002417659987616367
+        },
+        "movielens": {
+          "step_time_ms": 0.4337991540000985,
+          "step_time_std_ms": 0.03211484990563353
+        }
+      },
+      "step_time_ms": 4.035076812571431,
+      "cost_multiplier": 1.0
+    },
+    "amsgrad": {
+      "kwargs": {
+        "lr": 0.001,
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.4535595720001311,
+          "step_time_std_ms": 0.01310024871746819
+        },
+        "cifar100": {
+          "step_time_ms": 13.008375325999962,
+          "step_time_std_ms": 0.0052191184941999275
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 10.029983514000037,
+          "step_time_std_ms": 0.006504411123005146
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.6694079599999441,
+          "step_time_std_ms": 0.016431655012783868
+        },
+        "chargpt": {
+          "step_time_ms": 0.9480190620000711,
+          "step_time_std_ms": 0.008769737327946192
+        },
+        "warpeace": {
+          "step_time_ms": 3.9764775759999793,
+          "step_time_std_ms": 0.0032804289471531213
+        },
+        "movielens": {
+          "step_time_ms": 0.4337727400002222,
+          "step_time_std_ms": 0.014279413980861109
+        }
+      },
+      "step_time_ms": 4.217085107142907,
+      "cost_multiplier": 1.040519423799404
+    },
+    "nadam": {
+      "kwargs": {
+        "lr": 0.002,
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "momentum_decay": 0.004,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.5742085679999036,
+          "step_time_std_ms": 0.011409862197074794
+        },
+        "cifar100": {
+          "step_time_ms": 13.502020876000188,
+          "step_time_std_ms": 0.004487606744767376
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 10.379318820000092,
+          "step_time_std_ms": 0.007338724204388744
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.9480529480000541,
+          "step_time_std_ms": 0.047423878223617696
+        },
+        "chargpt": {
+          "step_time_ms": 1.3930810339999196,
+          "step_time_std_ms": 0.01805444379199236
+        },
+        "warpeace": {
+          "step_time_ms": 4.122267955999973,
+          "step_time_std_ms": 0.002867407753512347
+        },
+        "movielens": {
+          "step_time_ms": 0.555075980000197,
+          "step_time_std_ms": 0.007467003278799002
+        }
+      },
+      "step_time_ms": 4.4962894545714756,
+      "cost_multiplier": 1.2684846465083173
+    },
+    "adan": {
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "max_grad_norm": 0.0,
+        "eps": 1e-08,
+        "betas": [
+          0.98,
+          0.92,
+          0.99
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.4981695380004112,
+          "step_time_std_ms": 0.0305365366158799
+        },
+        "cifar100": {
+          "step_time_ms": 27.989552253999815,
+          "step_time_std_ms": 0.028043996914192217
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 21.30913738000004,
+          "step_time_std_ms": 0.008189808768474836
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 0.7852531219996307,
+          "step_time_std_ms": 0.02800857571035078
+        },
+        "chargpt": {
+          "step_time_ms": 1.1520163299996966,
+          "step_time_std_ms": 0.009832118149619427
+        },
+        "warpeace": {
+          "step_time_ms": 8.444323967999479,
+          "step_time_std_ms": 0.002226049217939916
+        },
+        "movielens": {
+          "step_time_ms": 0.4711392980000256,
+          "step_time_std_ms": 0.013611190121443312
+        }
+      },
+      "step_time_ms": 8.664227412857015,
+      "cost_multiplier": 1.6335633554871143
+    },
+    "lars": {
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "momentum": 0.9,
+        "dampening": 0.0,
+        "trust_coefficient": 0.001
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 0.9242285119989901,
+          "step_time_std_ms": 0.02324543204851685
+        },
+        "cifar100": {
+          "step_time_ms": 10.852002678000645,
+          "step_time_std_ms": 0.0030225410297933094
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 8.997100675999718,
+          "step_time_std_ms": 0.005381835904313578
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 1.3402266840002994,
+          "step_time_std_ms": 0.034645936748650595
+        },
+        "chargpt": {
+          "step_time_ms": 2.1743707820005507,
+          "step_time_std_ms": 0.05463178886282599
+        },
+        "warpeace": {
+          "step_time_ms": 3.5967825199986696,
+          "step_time_std_ms": 0.046437672146945545
+        },
+        "movielens": {
+          "step_time_ms": 1.0229435879982702,
+          "step_time_std_ms": 0.02631907307767466
+        }
+      },
+      "step_time_ms": 4.129665062856735,
+      "cost_multiplier": 1.6786122361483735
+    },
+    "madgrad": {
+      "kwargs": {
+        "lr": 0.001,
+        "momentum": 0.9,
+        "weight_decay": 0.0,
+        "eps": 1e-06
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.1396017919996664,
+          "step_time_std_ms": 0.025782393345118827
+        },
+        "cifar100": {
+          "step_time_ms": 12.384170523997454,
+          "step_time_std_ms": 0.003888851828433999
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 12.717058621999058,
+          "step_time_std_ms": 0.11772083204850711
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 2.4741910339998867,
+          "step_time_std_ms": 0.15983287373751387
+        },
+        "chargpt": {
+          "step_time_ms": 3.9170987740008067,
+          "step_time_std_ms": 0.028247097392782927
+        },
+        "warpeace": {
+          "step_time_ms": 5.668977751999591,
+          "step_time_std_ms": 0.049719790507821146
+        },
+        "movielens": {
+          "step_time_ms": 0.9897797119983807,
+          "step_time_std_ms": 0.01885011287821791
+        }
+      },
+      "step_time_ms": 5.612982601427835,
+      "cost_multiplier": 2.413107282826515
     },
     "radam": {
-      "step_time_ms": 0.26827379201131407,
-      "step_time_std_ms": 0.004239290103681991,
       "kwargs": {
         "lr": 0.001,
         "weight_decay": 0.0,
@@ -103,11 +561,40 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.8014298284396459
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.198889948000101,
+          "step_time_std_ms": 0.017076201742479608
+        },
+        "cifar100": {
+          "step_time_ms": 12.35238543600019,
+          "step_time_std_ms": 0.00228883167015349
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 14.093619716000033,
+          "step_time_std_ms": 0.7265821086815555
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 2.5580970800000387,
+          "step_time_std_ms": 0.05124924642576976
+        },
+        "chargpt": {
+          "step_time_ms": 4.162746417999757,
+          "step_time_std_ms": 0.08306138588402809
+        },
+        "warpeace": {
+          "step_time_ms": 6.014759024,
+          "step_time_std_ms": 0.057727498014391504
+        },
+        "movielens": {
+          "step_time_ms": 1.0249737420003837,
+          "step_time_std_ms": 0.014315909983590827
+        }
+      },
+      "step_time_ms": 5.915067337714357,
+      "cost_multiplier": 2.534712989864978
     },
     "lookaheadradam": {
-      "step_time_ms": 0.2842216670396738,
-      "step_time_std_ms": 0.00865922830215206,
       "kwargs": {
         "lr": 0.001,
         "weight_decay": 0.0,
@@ -120,25 +607,40 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.8490718386864621
-    },
-    "adam": {
-      "step_time_ms": 0.3105075829807902,
-      "step_time_std_ms": 0.008040068168284183,
-      "kwargs": {
-        "lr": 0.001,
-        "eps": 1e-08,
-        "weight_decay": 0.0,
-        "betas": [
-          0.9,
-          0.999
-        ]
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.2865248140014958,
+          "step_time_std_ms": 0.019778760891824978
+        },
+        "cifar100": {
+          "step_time_ms": 13.33489605000068,
+          "step_time_std_ms": 0.10375975250951135
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 15.601494073999675,
+          "step_time_std_ms": 0.4862194657376492
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 2.6982337740000726,
+          "step_time_std_ms": 0.0459726630522025
+        },
+        "chargpt": {
+          "step_time_ms": 4.456446629999845,
+          "step_time_std_ms": 0.04924297750991603
+        },
+        "warpeace": {
+          "step_time_ms": 6.502222019999863,
+          "step_time_std_ms": 0.05952467707404328
+        },
+        "movielens": {
+          "step_time_ms": 1.1254227340014042,
+          "step_time_std_ms": 0.019990001395809715
+        }
       },
-      "cost_multiplier": 0.9275972769901016
+      "step_time_ms": 6.42932001371472,
+      "cost_multiplier": 2.7262462825716893
     },
     "lamb": {
-      "step_time_ms": 0.3165193750028266,
-      "step_time_std_ms": 0.007979618032547299,
       "kwargs": {
         "lr": 0.001,
         "weight_decay": 0.0,
@@ -150,11 +652,123 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.9455566513021191
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.3443293759994503,
+          "step_time_std_ms": 0.2536907823787738
+        },
+        "cifar100": {
+          "step_time_ms": 19.335810315999648,
+          "step_time_std_ms": 0.09810988613933604
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 20.20603841000002,
+          "step_time_std_ms": 0.10460524595474713
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 2.4929585819995737,
+          "step_time_std_ms": 0.1486868530954327
+        },
+        "chargpt": {
+          "step_time_ms": 3.949316984000006,
+          "step_time_std_ms": 0.13138239640461197
+        },
+        "warpeace": {
+          "step_time_ms": 8.908960790000037,
+          "step_time_std_ms": 0.08399660714373638
+        },
+        "movielens": {
+          "step_time_ms": 1.1630933360002016,
+          "step_time_std_ms": 0.018962051265277325
+        }
+      },
+      "step_time_ms": 8.200072541999848,
+      "cost_multiplier": 2.8622674800458676
+    },
+    "amos": {
+      "kwargs": {
+        "lr": 0.001,
+        "beta": 0.999,
+        "momentum": 0.0,
+        "extra_l2": 0.0,
+        "c_coef": 0.25,
+        "d_coef": 0.25,
+        "eps": 1e-18
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.5962913920000115,
+          "step_time_std_ms": 0.3380191059723531
+        },
+        "cifar100": {
+          "step_time_ms": 11.845962163999957,
+          "step_time_std_ms": 0.030381718428567007
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 14.065360075999937,
+          "step_time_std_ms": 0.25407255720204136
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 2.8438463879999745,
+          "step_time_std_ms": 0.17604354382009957
+        },
+        "chargpt": {
+          "step_time_ms": 4.4226710699999785,
+          "step_time_std_ms": 0.04607238203545453
+        },
+        "warpeace": {
+          "step_time_ms": 6.427307153999891,
+          "step_time_std_ms": 0.04845876615926789
+        },
+        "movielens": {
+          "step_time_ms": 1.3564601039997801,
+          "step_time_std_ms": 0.03302116637592459
+        }
+      },
+      "step_time_ms": 6.079699763999932,
+      "cost_multiplier": 2.891583780395057
+    },
+    "adadelta": {
+      "kwargs": {
+        "lr": 1.0,
+        "rho": 0.9,
+        "weight_decay": 0.0,
+        "eps": 1e-06
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.7145751660000315,
+          "step_time_std_ms": 0.607382396099087
+        },
+        "cifar100": {
+          "step_time_ms": 17.38950534000014,
+          "step_time_std_ms": 0.005302463350562155
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 18.203102274000006,
+          "step_time_std_ms": 0.178031743761333
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 3.3756578859998854,
+          "step_time_std_ms": 0.048028259345974586
+        },
+        "chargpt": {
+          "step_time_ms": 5.638403771999834,
+          "step_time_std_ms": 0.19967239200002693
+        },
+        "warpeace": {
+          "step_time_ms": 8.020901588000015,
+          "step_time_std_ms": 0.021029139986744837
+        },
+        "movielens": {
+          "step_time_ms": 1.3243395080003209,
+          "step_time_std_ms": 0.021470351900209305
+        }
+      },
+      "step_time_ms": 7.952355076285747,
+      "cost_multiplier": 3.4128506647301764
     },
     "schedulefreeadamw": {
-      "step_time_ms": 0.3185600440046983,
-      "step_time_std_ms": 0.008269425687736259,
       "kwargs": {
         "lr": 0.0025,
         "weight_decay": 0.0,
@@ -168,36 +782,40 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.951652859939611
-    },
-    "madgrad": {
-      "step_time_ms": 0.32279820597614156,
-      "step_time_std_ms": 0.003939620639308856,
-      "kwargs": {
-        "lr": 0.001,
-        "momentum": 0.9,
-        "weight_decay": 0.0,
-        "eps": 1e-06
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.6101635660008922,
+          "step_time_std_ms": 0.10499905126052388
+        },
+        "cifar100": {
+          "step_time_ms": 16.121137187999917,
+          "step_time_std_ms": 0.031926478685812644
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 20.363037712000278,
+          "step_time_std_ms": 1.256291069971549
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 3.584114310000359,
+          "step_time_std_ms": 0.011790678987909921
+        },
+        "chargpt": {
+          "step_time_ms": 5.926859093999837,
+          "step_time_std_ms": 0.0510917213701979
+        },
+        "warpeace": {
+          "step_time_ms": 8.692271790000405,
+          "step_time_std_ms": 0.23669242152004044
+        },
+        "movielens": {
+          "step_time_ms": 1.4365645299997143,
+          "step_time_std_ms": 0.023492252826901813
+        }
       },
-      "cost_multiplier": 0.9643137665313737
-    },
-    "amsgrad": {
-      "step_time_ms": 0.3241025430179434,
-      "step_time_std_ms": 0.006857683161180567,
-      "kwargs": {
-        "lr": 0.001,
-        "eps": 1e-08,
-        "weight_decay": 0.0,
-        "betas": [
-          0.9,
-          0.999
-        ]
-      },
-      "cost_multiplier": 0.968210288080503
+      "step_time_ms": 8.247735455714487,
+      "cost_multiplier": 3.548146549980617
     },
     "yogi": {
-      "step_time_ms": 0.32552949899400113,
-      "step_time_std_ms": 0.007999119653919333,
       "kwargs": {
         "lr": 0.01,
         "initial_accumulator": 1e-06,
@@ -208,11 +826,169 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.9724731162699769
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.6957290040002138,
+          "step_time_std_ms": 0.11952120021275131
+        },
+        "cifar100": {
+          "step_time_ms": 17.940951584000004,
+          "step_time_std_ms": 0.05756784874993256
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 21.25616314600006,
+          "step_time_std_ms": 0.7935627481096605
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 3.654591076000315,
+          "step_time_std_ms": 0.03363758716309968
+        },
+        "chargpt": {
+          "step_time_ms": 6.03178214400009,
+          "step_time_std_ms": 0.05009653029255339
+        },
+        "warpeace": {
+          "step_time_ms": 8.77837133799926,
+          "step_time_std_ms": 0.3356963570550358
+        },
+        "movielens": {
+          "step_time_ms": 1.4564508300002215,
+          "step_time_std_ms": 0.027279108336897888
+        }
+      },
+      "step_time_ms": 8.687719874571453,
+      "cost_multiplier": 3.653053941417906
+    },
+    "sm3": {
+      "kwargs": {
+        "lr": 0.1,
+        "momentum": 0.0,
+        "beta": 0.0,
+        "eps": 1e-30
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 1.9710787179983529,
+          "step_time_std_ms": 0.38805812888514407
+        },
+        "cifar100": {
+          "step_time_ms": 15.6517878020004,
+          "step_time_std_ms": 0.22585446820720506
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 22.01123501800066,
+          "step_time_std_ms": 0.9580657539019617
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 3.6573829220014886,
+          "step_time_std_ms": 0.05221852608973543
+        },
+        "chargpt": {
+          "step_time_ms": 6.220730215999538,
+          "step_time_std_ms": 0.040976527697559766
+        },
+        "warpeace": {
+          "step_time_ms": 9.171762356000727,
+          "step_time_std_ms": 0.19571913545043632
+        },
+        "movielens": {
+          "step_time_ms": 1.7816182300002767,
+          "step_time_std_ms": 0.025329637992184663
+        }
+      },
+      "step_time_ms": 8.63794218028592,
+      "cost_multiplier": 3.883410565781964
+    },
+    "ademamix": {
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "alpha": 5.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999,
+          0.9999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 2.0203101499998866,
+          "step_time_std_ms": 0.025300743334188896
+        },
+        "cifar100": {
+          "step_time_ms": 20.771324161999928,
+          "step_time_std_ms": 0.042722607453352913
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 24.566631393999614,
+          "step_time_std_ms": 0.8108456571319378
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 4.225001096000142,
+          "step_time_std_ms": 0.07335620966779344
+        },
+        "chargpt": {
+          "step_time_ms": 7.102019960000235,
+          "step_time_std_ms": 0.07156157794843822
+        },
+        "warpeace": {
+          "step_time_ms": 10.290626056000065,
+          "step_time_std_ms": 0.27876671671069186
+        },
+        "movielens": {
+          "step_time_ms": 1.6611895319995253,
+          "step_time_std_ms": 0.03349323257445989
+        }
+      },
+      "step_time_ms": 10.091014621428485,
+      "cost_multiplier": 4.261736727643439
+    },
+    "diffgrad": {
+      "kwargs": {
+        "lr": 0.001,
+        "weight_decay": 0.0,
+        "n_sma_threshold": 5.0,
+        "eps": 1e-08,
+        "betas": [
+          0.9,
+          0.999
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 2.2257741779997104,
+          "step_time_std_ms": 0.2017456023677611
+        },
+        "cifar100": {
+          "step_time_ms": 21.94172485199988,
+          "step_time_std_ms": 0.005230884809167968
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 27.423766879999903,
+          "step_time_std_ms": 1.0391741278442619
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 4.874830391999694,
+          "step_time_std_ms": 0.21022386211512697
+        },
+        "chargpt": {
+          "step_time_ms": 8.035291231999965,
+          "step_time_std_ms": 0.11234594246313638
+        },
+        "warpeace": {
+          "step_time_ms": 11.8217482080006,
+          "step_time_std_ms": 0.25262360669335887
+        },
+        "movielens": {
+          "step_time_ms": 1.9430644199990184,
+          "step_time_std_ms": 0.05796851038675907
+        }
+      },
+      "step_time_ms": 11.180885737428396,
+      "cost_multiplier": 4.82652598930424
     },
     "prodigy": {
-      "step_time_ms": 0.3303592050360749,
-      "step_time_std_ms": 0.0035585824871177158,
       "kwargs": {
         "lr": 1.0,
         "d0": 1e-06,
@@ -225,25 +1001,40 @@
           0.999
         ]
       },
-      "cost_multiplier": 0.986901176706644
-    },
-    "adamw": {
-      "step_time_ms": 0.33474395697703585,
-      "step_time_std_ms": 0.006101164608224602,
-      "kwargs": {
-        "lr": 0.001,
-        "eps": 1e-08,
-        "weight_decay": 0.01,
-        "betas": [
-          0.9,
-          0.999
-        ]
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 2.4333292739997887,
+          "step_time_std_ms": 0.5860998616372355
+        },
+        "cifar100": {
+          "step_time_ms": 19.670600857999716,
+          "step_time_std_ms": 0.3822861474650179
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 28.15828455000042,
+          "step_time_std_ms": 0.3776546489619909
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 5.053578319999815,
+          "step_time_std_ms": 0.08010628162239174
+        },
+        "chargpt": {
+          "step_time_ms": 8.280536488000052,
+          "step_time_std_ms": 0.07549400764143725
+        },
+        "warpeace": {
+          "step_time_ms": 11.850252698000077,
+          "step_time_std_ms": 0.19050761753314055
+        },
+        "movielens": {
+          "step_time_ms": 2.0181526760002275,
+          "step_time_std_ms": 0.0203431717807752
+        }
       },
-      "cost_multiplier": 1.0
+      "step_time_ms": 11.066390694857157,
+      "cost_multiplier": 4.985266690003693
     },
     "adammini": {
-      "step_time_ms": 0.346382289979374,
-      "step_time_std_ms": 0.006882398690365306,
       "kwargs": {
         "lr": 1.0,
         "weight_decay": 0.1,
@@ -255,109 +1046,28 @@
           0.999
         ]
       },
-      "cost_multiplier": 1.0347678658860346
-    },
-    "adan": {
-      "step_time_ms": 0.3471008719934616,
-      "step_time_std_ms": 0.007338767434009923,
-      "kwargs": {
-        "lr": 0.001,
-        "weight_decay": 0.0,
-        "max_grad_norm": 0.0,
-        "eps": 1e-08,
-        "betas": [
-          0.98,
-          0.92,
-          0.99
-        ]
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 2.5368606360007107,
+          "step_time_std_ms": 0.020883772181701347
+        },
+        "cifar100": {
+          "step_time_ms": 14.525911690000616,
+          "step_time_std_ms": 0.3181868403922923
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 5.763956661999146,
+          "step_time_std_ms": 0.24645669993388222
+        },
+        "movielens": {
+          "step_time_ms": 2.255829486000948,
+          "step_time_std_ms": 0.04259302368537868
+        }
       },
-      "cost_multiplier": 1.0369145275332736
-    },
-    "adadelta": {
-      "step_time_ms": 0.3581495840335264,
-      "step_time_std_ms": 0.005837813868593983,
-      "kwargs": {
-        "lr": 1.0,
-        "rho": 0.9,
-        "weight_decay": 0.0,
-        "eps": 1e-06
-      },
-      "cost_multiplier": 1.0699209845873223
-    },
-    "nadam": {
-      "step_time_ms": 0.35922254406614224,
-      "step_time_std_ms": 0.0098273313680488,
-      "kwargs": {
-        "lr": 0.002,
-        "eps": 1e-08,
-        "weight_decay": 0.0,
-        "momentum_decay": 0.004,
-        "betas": [
-          0.9,
-          0.999
-        ]
-      },
-      "cost_multiplier": 1.0731263002031899
-    },
-    "ademamix": {
-      "step_time_ms": 0.36269812601676676,
-      "step_time_std_ms": 0.012351031931508482,
-      "kwargs": {
-        "lr": 0.001,
-        "weight_decay": 0.0,
-        "alpha": 5.0,
-        "eps": 1e-08,
-        "betas": [
-          0.9,
-          0.999,
-          0.9999
-        ]
-      },
-      "cost_multiplier": 1.0835091073552932
-    },
-    "diffgrad": {
-      "step_time_ms": 0.38361787400208414,
-      "step_time_std_ms": 0.006807552543869381,
-      "kwargs": {
-        "lr": 0.001,
-        "weight_decay": 0.0,
-        "n_sma_threshold": 5.0,
-        "eps": 1e-08,
-        "betas": [
-          0.9,
-          0.999
-        ]
-      },
-      "cost_multiplier": 1.1460038814932247
-    },
-    "amos": {
-      "step_time_ms": 0.4279604990006191,
-      "step_time_std_ms": 0.008434694955442995,
-      "kwargs": {
-        "lr": 0.001,
-        "beta": 0.999,
-        "momentum": 0.0,
-        "extra_l2": 0.0,
-        "c_coef": 0.25,
-        "d_coef": 0.25,
-        "eps": 1e-18
-      },
-      "cost_multiplier": 1.2784711720127575
-    },
-    "sm3": {
-      "step_time_ms": 0.464044913998805,
-      "step_time_std_ms": 0.01937831422931986,
-      "kwargs": {
-        "lr": 0.1,
-        "momentum": 0.0,
-        "beta": 0.0,
-        "eps": 1e-30
-      },
-      "cost_multiplier": 1.3862682337552683
+      "step_time_ms": 6.270639618500355,
+      "cost_multiplier": 5.325752339180651
     },
     "mars": {
-      "step_time_ms": 0.48201716902258335,
-      "step_time_std_ms": 0.007199619630996979,
       "kwargs": {
         "lr": 0.003,
         "gamma": 0.025,
@@ -374,39 +1084,86 @@
           0.95
         ]
       },
-      "cost_multiplier": 1.4399577915476776
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 3.040865969999913,
+          "step_time_std_ms": 0.5835297654103592
+        },
+        "cifar100": {
+          "step_time_ms": 30.50274361600009,
+          "step_time_std_ms": 0.35266513502073554
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 39.13321614399979,
+          "step_time_std_ms": 0.6141831838684382
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 5.714811009999493,
+          "step_time_std_ms": 0.07905279584397307
+        },
+        "chargpt": {
+          "step_time_ms": 9.705337130000544,
+          "step_time_std_ms": 0.18532087221296187
+        },
+        "warpeace": {
+          "step_time_ms": 14.489033390000714,
+          "step_time_std_ms": 0.153071528930785
+        },
+        "movielens": {
+          "step_time_ms": 2.7415971079997234,
+          "step_time_std_ms": 0.0328988433241311
+        }
+      },
+      "step_time_ms": 15.046800624000038,
+      "cost_multiplier": 6.184512880123528
     },
-    "soap": {
-      "step_time_ms": 1.0841937909863193,
-      "step_time_std_ms": 0.03654776711707888,
+    "muon": {
       "kwargs": {
-        "lr": 0.003,
-        "weight_decay": 0.01,
-        "precondition_frequency": 10.0,
-        "max_precondition_dim": 10000.0,
-        "eps": 1e-08,
-        "betas": [
-          0.95,
+        "lr": 0.02,
+        "momentum": 0.95,
+        "weight_decay": 0.0,
+        "adamw_lr": 0.0003,
+        "adamw_wd": 0.0,
+        "adamw_eps": 1e-10,
+        "adamw_betas": [
+          0.9,
           0.95
         ]
       },
-      "cost_multiplier": 3.2388748725363765
-    },
-    "shampoo": {
-      "step_time_ms": 1.587033665011404,
-      "step_time_std_ms": 0.022053858570490553,
-      "kwargs": {
-        "lr": 0.001,
-        "momentum": 0.0,
-        "weight_decay": 0.0,
-        "preconditioning_compute_steps": 1.0,
-        "matrix_eps": 1e-06
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 4.971015600000102,
+          "step_time_std_ms": 0.823962821540051
+        },
+        "cifar100": {
+          "step_time_ms": 177.77858713199976,
+          "step_time_std_ms": 0.5830963935978394
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 157.23838305200115,
+          "step_time_std_ms": 0.17169327179149865
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 8.226439515999116,
+          "step_time_std_ms": 0.0936337832523501
+        },
+        "chargpt": {
+          "step_time_ms": 14.291528939999809,
+          "step_time_std_ms": 0.20662320816790086
+        },
+        "warpeace": {
+          "step_time_ms": 46.38491310399968,
+          "step_time_std_ms": 0.34239162760349995
+        },
+        "movielens": {
+          "step_time_ms": 12.824169704000267,
+          "step_time_std_ms": 0.026375537908538582
+        }
       },
-      "cost_multiplier": 4.741037536101893
+      "step_time_ms": 60.24500529257141,
+      "cost_multiplier": 16.079441163200578
     },
     "ranger21": {
-      "step_time_ms": 1.6598634580150244,
-      "step_time_std_ms": 0.3825901660951386,
       "kwargs": {
         "lr": 0.001,
         "beta0": 0.9,
@@ -424,10 +1181,130 @@
           0.999
         ]
       },
-      "cost_multiplier": 4.958606192639632
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 9.081023161999836,
+          "step_time_std_ms": 0.1988999055136942
+        },
+        "cifar100": {
+          "step_time_ms": 56.2752111460013,
+          "step_time_std_ms": 0.629008669902337
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 111.66313809800158,
+          "step_time_std_ms": 2.0964228823995827
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 20.0813752819995,
+          "step_time_std_ms": 0.265430070835405
+        },
+        "chargpt": {
+          "step_time_ms": 33.45970247600053,
+          "step_time_std_ms": 0.350586716362941
+        },
+        "warpeace": {
+          "step_time_ms": 49.285792145996304,
+          "step_time_std_ms": 0.4575498075682575
+        },
+        "movielens": {
+          "step_time_ms": 8.049040435997995,
+          "step_time_std_ms": 0.05289126392525563
+        }
+      },
+      "step_time_ms": 41.12789753514244,
+      "cost_multiplier": 19.53435765927466
+    },
+    "soap": {
+      "kwargs": {
+        "lr": 0.003,
+        "weight_decay": 0.01,
+        "precondition_frequency": 10.0,
+        "max_precondition_dim": 10000.0,
+        "eps": 1e-08,
+        "betas": [
+          0.95,
+          0.95
+        ]
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 6.712043528000776,
+          "step_time_std_ms": 2.3975195748686753
+        },
+        "cifar100": {
+          "step_time_ms": 144.3639535999996,
+          "step_time_std_ms": 0.7252039465428853
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 255.81610658599996,
+          "step_time_std_ms": 0.4170415393063809
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 10.292714144000005,
+          "step_time_std_ms": 0.19999586694495336
+        },
+        "chargpt": {
+          "step_time_ms": 19.49667413600036,
+          "step_time_std_ms": 0.3637725551951392
+        },
+        "warpeace": {
+          "step_time_ms": 80.10344107000084,
+          "step_time_std_ms": 0.7606733055158734
+        },
+        "movielens": {
+          "step_time_ms": 214.11474751599914,
+          "step_time_std_ms": 1.4333473741366403
+        }
+      },
+      "step_time_ms": 104.41424008285723,
+      "cost_multiplier": 86.5800743620442
+    },
+    "shampoo": {
+      "kwargs": {
+        "lr": 0.001,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "preconditioning_compute_steps": 1.0,
+        "matrix_eps": 1e-06
+      },
+      "tasks": {
+        "burgers_pinn": {
+          "step_time_ms": 12.724240468000062,
+          "step_time_std_ms": 2.1382606342966124
+        },
+        "cifar100": {
+          "step_time_ms": 147.52878310000006,
+          "step_time_std_ms": 1.411431304040705
+        },
+        "tiny_imagenet": {
+          "step_time_ms": 496.0366919959995,
+          "step_time_std_ms": 1.3564948846907545
+        },
+        "ogbg_molhiv": {
+          "step_time_ms": 23.93529091200071,
+          "step_time_std_ms": 0.7371663028267194
+        },
+        "chargpt": {
+          "step_time_ms": 41.907426586000845,
+          "step_time_std_ms": 0.7486100589651733
+        },
+        "warpeace": {
+          "step_time_ms": 152.58483333800132,
+          "step_time_std_ms": 0.9003205000922829
+        },
+        "movielens": {
+          "step_time_ms": 484.543413204,
+          "step_time_std_ms": 1.8968434009129203
+        }
+      },
+      "step_time_ms": 194.18009708628605,
+      "cost_multiplier": 190.52037085486128
     }
   },
   "failed": {
-    "muon": "Tensor.__contains__ only supports Tensor or scalar, but you passed in a <class 'str'>."
+    "muon": "Tensor.__contains__ only supports Tensor or scalar, but you passed in a <class 'str'>.",
+    "adammini:tiny_imagenet": "view() received an invalid combination of arguments - got (float, float, int), but expected one of:\n * (torch.dtype dtype)\n * (tuple of ints size)\n",
+    "adammini:chargpt": "view() received an invalid combination of arguments - got (float, float, int), but expected one of:\n * (torch.dtype dtype)\n * (tuple of ints size)\n",
+    "adammini:warpeace": "view() received an invalid combination of arguments - got (float, float, int), but expected one of:\n * (torch.dtype dtype)\n * (tuple of ints size)\n"
   }
 }

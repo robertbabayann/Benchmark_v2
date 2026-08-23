@@ -2,25 +2,16 @@ import time
 import traceback
 import dataclasses
 from datetime import datetime, timezone
+from pathlib import Path
 from tqdm import tqdm
 
 from optimbench.config import CALIBRATION as DEFAULT_CALIBRATION
-from optimbench.registry import param_spec, optimizer_source
+from optimbench.registry import param_spec
 from optimbench.calibration import calibrate
+from optimbench.presets import build_entry, load_payload
 
-from common import save_json, select_optimizers
+from common import ROOT, save_json, select_optimizers
 from settings import CALIBRATION_RUN
-
-
-def convergence_rate(records):
-    if not records:
-        return None
-    converged = sum(1 for r in records if r["status"] == "converged")
-    return converged / len(records)
-
-
-def serialize_bounds(bounds):
-    return {k: [v[0], v[1]] for k, v in bounds.items()}
 
 
 def build_config():
@@ -36,47 +27,67 @@ def build_config():
     )
 
 
-def calibrate_all(cfg, names, output_path):
-    summary = {"config": dataclasses.asdict(cfg), "optimizers": {}}
+def collect_pending(names, stored):
+    done = [
+        name for name in names
+        if isinstance(stored.get(name), dict) and stored[name].get("status") == "ok"
+    ]
+    pending = [name for name in names if name not in done]
+    return done, pending
+
+
+def calibrate_all(cfg, names, output_path, summary):
     progress = tqdm(names, desc="calibrating", unit="optimizer")
-    for name in progress:
-        progress.set_postfix_str(name)
-        started_at = datetime.now(timezone.utc).isoformat()
-        start = time.perf_counter()
-        try:
-            spec = param_spec(name)
-            result = calibrate(name, spec, cfg)
-            entry = {
-                "status": "ok",
-                "source": optimizer_source(name),
-                "calibration_skipped": result["calibration_skipped"],
-                "skip_reason": result["skip_reason"],
-                "active_bounds": serialize_bounds(result["active_bounds"]),
-                "all_bounds": serialize_bounds(result["all_bounds"]),
-                "fixed": result["fixed"],
-                "sensitivity_ST": dict(zip(result["sensitivity"]["names"], result["sensitivity"]["ST"])),
-                "sensitivity_S1": dict(zip(result["sensitivity"]["names"], result["sensitivity"]["S1"])),
-                "surrogate_used": result["surrogate_used"],
-                "surrogate_r2": result["surrogate_r2"],
-                "convergence_rate": convergence_rate(result["records"]),
-            }
-        except Exception as e:
-            entry = {"status": "failed", "error": str(e), "traceback": traceback.format_exc()}
-        entry["started_at"] = started_at
-        entry["finished_at"] = datetime.now(timezone.utc).isoformat()
-        entry["elapsed_seconds"] = time.perf_counter() - start
-        summary["optimizers"][name] = entry
-        save_json(output_path, summary)
-    return summary
+    interrupted = False
+    try:
+        for name in progress:
+            progress.set_postfix_str(name)
+            started_at = datetime.now(timezone.utc).isoformat()
+            start = time.perf_counter()
+            try:
+                spec = param_spec(name)
+                result = calibrate(name, spec, cfg)
+                entry = build_entry(
+                    name, result,
+                    started_at=started_at,
+                    elapsed_seconds=time.perf_counter() - start,
+                )
+            except Exception as e:
+                entry = {"status": "failed", "error": str(e), "traceback": traceback.format_exc()}
+            summary["optimizers"][name] = entry
+            save_json(output_path, summary)
+    except KeyboardInterrupt:
+        interrupted = True
+        print("\ninterrupted, progress saved")
+    return interrupted
 
 
 def main():
     cfg = build_config()
     names = select_optimizers(CALIBRATION_RUN.optimizers)
-    print(f"calibration: {len(names)} optimizers -> {CALIBRATION_RUN.output_path}")
-    summary = calibrate_all(cfg, names, CALIBRATION_RUN.output_path)
-    failed = [name for name, entry in summary["optimizers"].items() if entry["status"] != "ok"]
-    print(f"done: {len(names) - len(failed)} ok, {len(failed)} failed")
+
+    previous = load_payload(CALIBRATION_RUN.output_path)
+    stored = {}
+    if previous and isinstance(previous.get("optimizers"), dict):
+        stored = previous["optimizers"]
+    if previous is not None and not stored:
+        print(f"warning: no usable optimizer entries found in {CALIBRATION_RUN.output_path}, starting fresh")
+
+    summary = {"config": dataclasses.asdict(cfg), "optimizers": dict(stored)}
+    done, pending = collect_pending(names, stored)
+    print(
+        f"calibration: {len(names)} optimizers selected, "
+        f"{len(done)} already calibrated, {len(pending)} to do -> {CALIBRATION_RUN.output_path}"
+    )
+    if not pending:
+        print("nothing to do: all selected optimizers are already calibrated")
+        return summary
+
+    interrupted = calibrate_all(cfg, pending, CALIBRATION_RUN.output_path, summary)
+    failed = [n for n in pending if summary["optimizers"].get(n, {}).get("status") != "ok"]
+    print(f"done: {len(pending) - len(failed)} newly calibrated ok, {len(failed)} failed")
+    status = "partially complete (interrupted)" if interrupted else "done"
+    print(f"{status}, results saved to {CALIBRATION_RUN.output_path}")
     return summary
 
 

@@ -1,6 +1,6 @@
 from optimbench.config import CALIBRATION, TARGETS, TUNING, RUN
 from optimbench.registry import param_spec, default_kwargs
-from optimbench.calibration import calibrate
+from optimbench.presets import get_calibration
 from optimbench.tuning import tune_optimizer
 from optimbench.targets import calibrate_targets
 from optimbench.metrics import steps_to_targets, aggregate
@@ -16,7 +16,7 @@ def train_eval_wrapper(task, optimizer_name, kwargs, seed, step_budget):
 
 def run_reference(task, reference_name="adamw", n_trials=None, final_seeds=None, sampler_seed=None):
     spec = param_spec(reference_name)
-    calib = calibrate(reference_name, spec, CALIBRATION)
+    calib = get_calibration(reference_name, spec, CALIBRATION)
     tuning_seed = TUNING.sampler_seed if sampler_seed is None else sampler_seed
     trials = TUNING.budgets["medium"] if n_trials is None else n_trials
 
@@ -39,7 +39,7 @@ def run_reference(task, reference_name="adamw", n_trials=None, final_seeds=None,
 
 def run_pair(task, optimizer_name, reference, budgets=None, final_seeds=None, sampler_seed=None):
     spec = param_spec(optimizer_name)
-    calib = calibrate(optimizer_name, spec, CALIBRATION)
+    calib = get_calibration(optimizer_name, spec, CALIBRATION)
     budget_map = TUNING.budgets if budgets is None else budgets
     seeds_count = RUN.final_seeds if final_seeds is None else final_seeds
     tuning_seed = TUNING.sampler_seed if sampler_seed is None else sampler_seed
