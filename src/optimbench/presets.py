@@ -12,6 +12,7 @@ from optimbench.registry import optimizer_source
 
 PRESETS_DIR = Path(__file__).resolve().parent / "presets"
 SEARCH_SPACE_PATH = PRESETS_DIR / "search_space.json"
+COST_PATH = PRESETS_DIR / "cost.json"
 
 
 def sanitize(obj):
@@ -150,3 +151,21 @@ def get_calibration(optimizer_name, param_spec, cfg, path: str | Path = SEARCH_S
     save_result(optimizer_name, result, path=path, cfg=cfg, elapsed_seconds=elapsed)
     print(f"preset: '{optimizer_name}' calibrated in {elapsed:.0f}s, appended to {Path(path).name}")
     return result
+
+
+def get_cost_multiplier(optimizer_name, task_name, path: str | Path = COST_PATH):
+    data = load_payload(path)
+    if not data:
+        return None
+    results = data.get("results") or {}
+    baseline_name = data.get("baseline", "adamw")
+    opt_tasks = (results.get(optimizer_name) or {}).get("tasks") or {}
+    base_tasks = (results.get(baseline_name) or {}).get("tasks") or {}
+    if task_name in opt_tasks and task_name in base_tasks:
+        opt_ms = (opt_tasks[task_name] or {}).get("step_time_ms")
+        base_ms = (base_tasks[task_name] or {}).get("step_time_ms")
+        if opt_ms and base_ms:
+            ratio = float(opt_ms) / float(base_ms)
+            print(f"cost preset: '{optimizer_name}' on '{task_name}' mult={ratio:.3f} (from {Path(path).name})")
+            return ratio
+    return None

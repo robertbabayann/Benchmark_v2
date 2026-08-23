@@ -1,6 +1,6 @@
 from optimbench.config import CALIBRATION, TARGETS, TUNING, RUN
 from optimbench.registry import param_spec, default_kwargs
-from optimbench.presets import get_calibration
+from optimbench.presets import get_calibration, get_cost_multiplier
 from optimbench.tuning import tune_optimizer
 from optimbench.targets import calibrate_targets
 from optimbench.metrics import steps_to_targets, aggregate
@@ -37,19 +37,26 @@ def run_reference(task, reference_name="adamw", n_trials=None, final_seeds=None,
     return calibrate_targets(histories, TARGETS.levels, TARGETS.max_budget_multiplier, task.higher_is_better)
 
 
-def run_pair(task, optimizer_name, reference, budgets=None, final_seeds=None, sampler_seed=None):
+def run_pair(task, optimizer_name, reference, budgets=None, final_seeds=None, sampler_seed=None, task_name=None):
     spec = param_spec(optimizer_name)
     calib = get_calibration(optimizer_name, spec, CALIBRATION)
     budget_map = TUNING.budgets if budgets is None else budgets
     seeds_count = RUN.final_seeds if final_seeds is None else final_seeds
     tuning_seed = TUNING.sampler_seed if sampler_seed is None else sampler_seed
 
-    cm = cost_multiplier(
-        lambda: task.build_model(0),
-        optimizer_name, default_kwargs(spec),
-        "adamw", {},
-        steps=20,
-    )
+    task_key = task_name or getattr(task, "name", "")
+    cm = get_cost_multiplier(optimizer_name, task_key)
+    if cm is None:
+        print(
+            f"warning: no cost preset for '{optimizer_name}' on '{task_key}', "
+            f"measuring step time now (20 steps)"
+        )
+        cm = cost_multiplier(
+            lambda: task.build_model(0),
+            optimizer_name, default_kwargs(spec),
+            "adamw", {},
+            steps=20,
+        )
 
     def train_eval_fn(name, kwargs, trial_number):
         metric, nfe = train_eval_wrapper(task, name, kwargs, tuning_seed, task.max_steps_cap // 4)

@@ -29,6 +29,7 @@ def main():
         budgets=PIPELINE.budgets,
         final_seeds=PIPELINE.final_seeds,
         sampler_seed=PIPELINE.sampler_seed,
+        task_name=PIPELINE.task,
     )
     for budget, data in results.items():
         print(f"\n{budget}:")

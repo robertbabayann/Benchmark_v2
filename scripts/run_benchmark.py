@@ -30,6 +30,7 @@ def run_task(task_name, optimizer_names, device):
             budgets=BENCHMARK.budgets,
             final_seeds=BENCHMARK.final_seeds,
             sampler_seed=BENCHMARK.sampler_seed,
+            task_name=task_name,
         )
     return payload
 
